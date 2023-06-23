@@ -96,7 +96,7 @@
                                     <div id="traffic-chart" class="traffic-chart"></div>
                                 </div>
                             </div>
-                            
+
                         </div> <!-- /.row -->
                         <div class="card-body"></div>
                     </div>

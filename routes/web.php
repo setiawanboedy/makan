@@ -25,10 +25,10 @@ Route::namespace('App\Http\Controllers')
 
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
-    // ->middleware(['auth','admin'])
+    ->middleware(['auth','admin'])
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard');
-
+        Route::resource('kuliner-place', KulinerPlaceController::class);
     });
 
 Auth::routes();

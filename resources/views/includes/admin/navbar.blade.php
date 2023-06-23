@@ -1,15 +1,15 @@
 <header id="header" class="header">
     <div class="top-left">
         <div class="navbar-header">
-            <a class="navbar-brand" href="./"><img src="backend/images/logo.png" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="backend/images/logo2.png" alt="Logo"></a>
+            <a class="navbar-brand" href="{{route('dashboard')}}"><img src="{{url('backend/images/logo.png')}}" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="{{route('dashboard')}}"><img src="{{url('backend/images/logo2.png')}}" alt="Logo"></a>
             <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
         </div>
     </div>
     <div class="top-right">
         <div class="header-menu">
             <div class="header-left">
-                
+
                 <div class="dropdown for-message">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-envelope"></i>
@@ -25,37 +25,14 @@
                                 <p>Hello, this is an example msg</p>
                             </div>
                         </a>
-                        <a class="dropdown-item media" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="backend/images/avatar/2.jpg"></span>
-                            <div class="message media-body">
-                                <span class="name float-left">Jack Sanders</span>
-                                <span class="time float-right">5 minutes ago</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item media" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="backend/images/avatar/3.jpg"></span>
-                            <div class="message media-body">
-                                <span class="name float-left">Cheryl Wheeler</span>
-                                <span class="time float-right">10 minutes ago</span>
-                                <p>Hello, this is an example msg</p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item media" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="backend/images/avatar/4.jpg"></span>
-                            <div class="message media-body">
-                                <span class="name float-left">Rachel Santos</span>
-                                <span class="time float-right">15 minutes ago</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </div>
-                        </a>
+
                     </div>
                 </div>
             </div>
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src="backend/images/admin.jpg" alt="User Avatar">
+                    <img class="user-avatar rounded-circle" src="{{url('backend/images/admin.jpg')}}" alt="User Avatar">
                 </a>
 
                 <div class="user-menu dropdown-menu">

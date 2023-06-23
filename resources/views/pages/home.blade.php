@@ -11,7 +11,7 @@
         <div class="col-md-6 p-5 mt-lg-5">
             <h1 class="display-5 animated fadeIn mb-4">Temukan <span class="text-primary">Tempat Makan</span> yang Nyaman dan Enak</h1>
             <p class="animated fadeIn mb-4 pb-2">Booking tempat makan yang nyaman langsung di sini. Tidak perlu khawatir kehabisan tempat dan banyak pilihan restonya.</p>
-            <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Pilih Tempat</a>
+            <a href="#kuliner" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Pilih Tempat</a>
         </div>
         <div class="col-md-6 animated fadeIn">
             <div class="owl-carousel header-carousel">
@@ -123,7 +123,7 @@
 
 
 <!-- Property List Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="kuliner">
     <div class="container">
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
@@ -132,19 +132,7 @@
                     <p>Yuk, dicek tempat makan populer, favoritnya foodies lokal, dan penawaran terbaik kami ada disini!</p>
                 </div>
             </div>
-            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Featured</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">For Sell</a>
-                    </li>
-                    <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">For Rent</a>
-                    </li>
-                </ul>
-            </div>
+
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
