@@ -1,8 +1,8 @@
 @extends('layouts.admin')
-
+@section('title','Admin - Transaksi')
 @section('content')
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="content">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,9 +16,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Travel</th>
-                            <th>User</th>
-                            <th>Visa</th>
+                            <th>Tempat Kuliner</th>
+                            <th>Pemesan</th>
+                            <th>Nomer Meja</th>
+                            <th>Tanggal dan Waktu</th>
                             <th>Total</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -28,17 +29,18 @@
                         @forelse ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->travel_package->title }}</td>
+                                <td>{{ $item->kuliner_place->name }}</td>
                                 <td>{{ $item->user->name }}</td>
-                                <td>${{ $item->additional_visa }}</td>
-                                <td>${{ $item->transaction_total }}</td>
+                                <td>{{ $item->booking_number->nomer}}</td>
+                                <td>{{$item->date}} & {{$item->time}}</td>
+                                <td>Rp {{ $item->transaction_total }}</td>
                                 <td>{{ $item->transaction_status }}</td>
                                 <td>
-                                    <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
+                                    {{-- <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
-                                    </a>
+                                    </a> --}}
                                     <a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
-                                        <i class="fa fa-pencil-alt"></i>
+                                        <i class="fa fa-pencil"></i>
                                     </a>
                                     <form action="{{route('transaction.destroy', $item->id)}}" method="post" class="d-inline">
                                         @csrf

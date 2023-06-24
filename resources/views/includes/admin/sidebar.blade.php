@@ -13,7 +13,7 @@
                         <a href="{{route('booking-number.index')}}"><i class="menu-icon fa fa-sort-numeric-asc"></i>Nomer Booking </a>
                     </li>
                     <li >
-                        <a href="#"><i class="menu-icon fa fa-money"></i>Transaksi </a>
+                        <a href="{{route('transaction.index')}}"><i class="menu-icon fa fa-money"></i>Transaksi </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

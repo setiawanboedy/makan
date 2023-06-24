@@ -30,7 +30,7 @@
                     <img class="user-avatar rounded-circle img-thumbnail" src="{{url('backend/images/admin.jpg')}}" alt="User Avatar">
                 </a>
                 <div class="user-menu dropdown-menu rounded-3 m-0">
-                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                    <a class="nav-link" href="{{route('profile')}}"><i class="fa fa- user"></i>Profil</a>
                     <form action="{{route('logout')}}" method="post">
                         @csrf
                         <button

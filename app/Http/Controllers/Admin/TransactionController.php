@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\KulinerPlace;
-use App\Http\Requests\Admin\KulinerRequest;
+use App\Models\Transaction;
 
-class KulinerPlaceController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class KulinerPlaceController extends Controller
      */
     public function index()
     {
-        $items = KulinerPlace::get();
-        return view('pages.admin.kuliner.index', [
+        $items = Transaction::with(['user','booking_number','kuliner_place'])->get();
+
+        return view('pages.admin.transaction.index',[
             'items'=>$items
         ]);
     }
@@ -29,7 +29,6 @@ class KulinerPlaceController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kuliner.create');
     }
 
     /**
@@ -38,16 +37,12 @@ class KulinerPlaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KulinerRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
-        // $data['slug'] = str::slug($request->title);
-        KulinerPlace::create($data);
+        Transaction::create($data);
 
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -69,8 +64,9 @@ class KulinerPlaceController extends Controller
      */
     public function edit($id)
     {
-        $item = KulinerPlace::findOrFail($id);
-        return view('pages.admin.kuliner.edit',[
+        $item = Transaction::findOrFail($id);
+
+        return view('pages.admin.transaction.edit',[
             'item'=>$item
         ]);
     }
@@ -86,16 +82,11 @@ class KulinerPlaceController extends Controller
     {
         $data = $request->all();
 
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
-
-
-        $item = KulinerPlace::findOrFail($id);
+        $item = Transaction::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -106,8 +97,8 @@ class KulinerPlaceController extends Controller
      */
     public function destroy($id)
     {
-        $item = KulinerPlace::findOrFail($id);
+        $item = Transaction::findOrFail($id);
         $item -> delete();
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('transaction.index');
     }
 }

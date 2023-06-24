@@ -20,8 +20,22 @@ Route::namespace('App\Http\Controllers')
     Route::get('/auth', 'AuthController@index')->name('auth');
     Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
-    Route::get('/kuliner/confirm', 'BookingConfirmController@index')->name('book-confirm');
+    Route::get('/kuliner/confirm/{id}', 'BookingConfirmController@index')->name('book-confirm');
 });
+
+Route::namespace('App\Http\Controllers')
+    ->middleware(['auth','web'])
+    ->controller(BookingConfirmController::class)
+    ->group(function(){
+        Route::post('/kuliner/confirm/submit/{id}', 'submit')->name('confirm-submit');
+    });
+
+Route::namespace('App\Http\Controllers')
+    ->middleware(['auth','web'])
+    ->controller(ProifleController::class)
+    ->group(function(){
+        Route::get('/profile', 'index')->name('profile');
+    });
 
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
@@ -30,6 +44,7 @@ Route::prefix('admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::resource('kuliner-place', KulinerPlaceController::class);
         Route::resource('booking-number', BookingNumberController::class);
+        Route::resource('transaction', TransactionController::class);
     });
 
 Auth::routes();

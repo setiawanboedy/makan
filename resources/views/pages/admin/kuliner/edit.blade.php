@@ -23,7 +23,7 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{route('kuliner-place.update', $item->id)}}" method="post">
+                <form action="{{route('kuliner-place.update', $item->id)}}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
@@ -47,14 +47,8 @@
                     <div class="form-group">
                         <label for="image">Gambar</label>
 
-                        {{-- <select id="select-image" name="image" required class="form-control">
-                            <option value="{{$item->image}}">Tetapkan</option>
-                            <option value="change-img">
-                                Ganti gambar
-                            </option>
 
-                        </select> --}}
-                        <input type="file" name="image" placeholder="Image" class="form-control" id="input-img">
+                        <input type="file" name="image" placeholder="Image" class="form-control">
 
                     </div>
                     <div class="form-group">

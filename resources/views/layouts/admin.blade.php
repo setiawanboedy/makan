@@ -10,8 +10,8 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="apple-touch-icon" href="{{url('backend/images/favicon.png')}}">
+    <link rel="shortcut icon" href="{{url('backend/images/favicon.png')}}">
 
     @include('includes.admin.style')
 </head>
@@ -26,7 +26,7 @@
         <!-- Content -->
         @yield('content')
         <!-- /.content -->
-        
+
         <!-- Footer -->
         @include('includes.admin.footer')
         <!-- /.site-footer -->
