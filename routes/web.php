@@ -18,9 +18,9 @@ Route::namespace('App\Http\Controllers')
 
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/auth', 'AuthController@index')->name('auth');
-    Route::get('/kuliner/detail', 'KulinerDetailController@index')->name('kuliner-detail');
+    Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
-
+    Route::get('/kuliner/confirm', 'BookingConfirmController@index')->name('book-confirm');
 });
 
 Route::prefix('admin')
@@ -29,6 +29,7 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::resource('kuliner-place', KulinerPlaceController::class);
+        Route::resource('booking-number', BookingNumberController::class);
     });
 
 Auth::routes();

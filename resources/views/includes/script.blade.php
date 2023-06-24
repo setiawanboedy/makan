@@ -8,3 +8,4 @@
 
 <!-- Template Javascript -->
 <script src="{{url('frontend/js/main.js')}}"></script>
+

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\KulinerPlace;
 
 class KulinerDetailController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
-        return view('pages.kuliner-detail');
+        $item = KulinerPlace::with(['booking_numbers'])->findOrFail($id);
+        return view('pages.kuliner-detail',[
+            'item'=>$item
+        ]);
     }
 }

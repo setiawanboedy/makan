@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\BookingNumber;
 use App\Models\KulinerPlace;
-use App\Http\Requests\Admin\KulinerRequest;
+use App\Http\Requests\Admin\BookingNumberRequest;
 
-class KulinerPlaceController extends Controller
+class BookingNumberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class KulinerPlaceController extends Controller
      */
     public function index()
     {
-        $items = KulinerPlace::get();
-        return view('pages.admin.kuliner.index', [
-            'items'=>$items
+        $items = BookingNumber::with(['kuliner_place'])->get();
+        return view('pages.admin.booking-number.index',[
+            'items'=> $items
         ]);
     }
 
@@ -29,7 +30,11 @@ class KulinerPlaceController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kuliner.create');
+        $kuliner_places = KulinerPlace::all();
+
+        return view('pages.admin.booking-number.create',[
+            'kuliner_places'=> $kuliner_places
+        ]);
     }
 
     /**
@@ -38,16 +43,12 @@ class KulinerPlaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KulinerRequest $request)
+    public function store(BookingNumberRequest $request)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
-        // $data['slug'] = str::slug($request->title);
-        KulinerPlace::create($data);
+        BookingNumber::create($data);
 
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('booking-number.index');
     }
 
     /**
@@ -69,8 +70,8 @@ class KulinerPlaceController extends Controller
      */
     public function edit($id)
     {
-        $item = KulinerPlace::findOrFail($id);
-        return view('pages.admin.kuliner.edit',[
+        $item = BookingNumber::with(['kuliner_place'])->findOrFail($id);
+        return view('pages.admin.booking-number.edit',[
             'item'=>$item
         ]);
     }
@@ -82,21 +83,15 @@ class KulinerPlaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookingNumberRequest $request, $id)
     {
         $data = $request->all();
 
-
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
-
-
-        $item = KulinerPlace::findOrFail($id);
+        $item = BookingNumber::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('booking-number.index');
     }
 
     /**
@@ -107,8 +102,8 @@ class KulinerPlaceController extends Controller
      */
     public function destroy($id)
     {
-        $item = KulinerPlace::findOrFail($id);
+        $item = BookingNumber::findOrFail($id);
         $item -> delete();
-        return redirect()->route('kuliner-place.index');
+        return redirect()->route('booking-number.index');
     }
 }

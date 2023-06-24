@@ -18,4 +18,8 @@ class KulinerPlace extends Model
     ];
 
     protected $hidden = [];
+
+    public function booking_numbers(){
+        return $this->hasMany(BookingNumber::class, 'booking_numbers_id', 'id');
+    }
 }

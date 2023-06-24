@@ -22,3 +22,4 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
 <script src="{{url('backend/assets/js/init/fullcalendar-init.js')}}"></script>
 
+

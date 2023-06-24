@@ -46,13 +46,15 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Gambar</label>
-                        <select name="image" required class="form-control">
-                            <option value="{{$item->image}}">Tetapkan</option>
-                            {{-- <option>
-                                <input type="file" name="image" placeholder="Image" class="form-control" >
-                            </option> --}}
 
-                        </select>
+                        {{-- <select id="select-image" name="image" required class="form-control">
+                            <option value="{{$item->image}}">Tetapkan</option>
+                            <option value="change-img">
+                                Ganti gambar
+                            </option>
+
+                        </select> --}}
+                        <input type="file" name="image" placeholder="Image" class="form-control" id="input-img">
 
                     </div>
                     <div class="form-group">
