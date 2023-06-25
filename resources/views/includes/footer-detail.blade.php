@@ -1,5 +1,5 @@
 <!-- Footer Start -->
-<div style="position:fixed; width: 100%; bottom: 0; display: block;" class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+<div style="width: 100%; bottom: 0; display: block;" class="container-fluid footer-detail bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
 
     <div class="container">
         <div class="copyright">

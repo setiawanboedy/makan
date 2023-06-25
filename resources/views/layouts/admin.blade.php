@@ -16,7 +16,7 @@
     @include('includes.admin.style')
 </head>
 
-<body>
+<body >
     @include('includes.admin.sidebar')
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">

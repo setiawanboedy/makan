@@ -21,7 +21,15 @@ Route::namespace('App\Http\Controllers')
     Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
     Route::get('/kuliner/confirm/{id}', 'BookingConfirmController@index')->name('book-confirm');
+
 });
+
+Route::namespace('App\Http\Controllers')
+    ->middleware(['auth','web'])
+    ->controller(TransactionUserController::class)
+    ->group(function(){
+        Route::get('/kuliner/transactions', 'index')->name('transaction-user');
+    });
 
 Route::namespace('App\Http\Controllers')
     ->middleware(['auth','web'])

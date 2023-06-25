@@ -32,7 +32,7 @@
                             alt="User Avatar">
                     </a>
                     <div class="user-menu dropdown-menu rounded-3 m-0">
-                        <a class="nav-link" href="{{ route('profile') }}"><i class="fa fa- user"></i>Pemesanan</a>
+                        <a class="nav-link" href="{{ route('transaction-user') }}"><i class="fa fa- user"></i>Pemesanan</a>
                         <a class="nav-link" href="{{ route('profile') }}"><i class="fa fa- user"></i>Profil</a>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
