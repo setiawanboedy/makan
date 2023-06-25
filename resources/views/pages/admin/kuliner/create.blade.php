@@ -47,6 +47,10 @@
                         <input type="file" name="image" placeholder="Image" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="avgprice">Harga rata-rata</label>
+                        <input type="text" name="avgprice" placeholder="Harga" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="table">Jumlah Meja</label>
                         <input type="text" class="form-control" name="table" placeholder="Table" value="{{old('table')}}">
 

@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div class="col-md-5 d-flex justify-content-end">
-                <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}" alt />
+                <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}" alt="Image" width="230"/>
             </div>
         </div>
         <div class="col-md-6 dest-rating py-lg-3">
@@ -68,7 +68,7 @@
                 <li class="nav-item me-2">
                     <div class="row text-center">
                         <div class="col-7">$$$$</div>
-                        <div class="col-lg-8">16k-40k</div>
+                        <div class="col-lg-8">{{$item->avgprice}}</div>
                     </div>
                 </li>
             </ul>
@@ -97,7 +97,7 @@
                                                 style="color: white; width: 25px;">+</div>
                                         </li>
                                         <li class="nav-item ">
-                                            <p class="p-2">22 Juni</p>
+                                            <p class="p-2 btn-primary btn-block text-white">Siap</p>
                                         </li>
                                     </ul>
 

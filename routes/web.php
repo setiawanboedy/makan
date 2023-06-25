@@ -32,7 +32,7 @@ Route::namespace('App\Http\Controllers')
 
 Route::namespace('App\Http\Controllers')
     ->middleware(['auth','web'])
-    ->controller(ProifleController::class)
+    ->controller(ProfileController::class)
     ->group(function(){
         Route::get('/profile', 'index')->name('profile');
     });

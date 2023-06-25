@@ -12,6 +12,7 @@ class KulinerPlace extends Model
         'name',
         'status',
         'image',
+        'avgprice',
         'address',
         'table',
         'room',

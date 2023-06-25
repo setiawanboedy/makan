@@ -38,7 +38,7 @@ class BookingConfirmController extends Controller
         ]);
 
 
-        return redirect()->route('kuliner');
+        return view('pages.success');
 
 
     }

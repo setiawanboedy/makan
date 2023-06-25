@@ -18,6 +18,7 @@ class CreateKulinerPackagesTable extends Migration
             $table->string('name');
             $table->string('status')->default('Buka');
             $table->text('image');
+            $table->string('avgprice');
             $table->string('address');
             $table->integer('table');
             $table->integer('room');

@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">69</span></div>
+                                        <div class="stat-text">{{$kuliner_count}}</span></div>
                                         <div class="stat-heading">Restoran</div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">35</span></div>
+                                        <div class="stat-text">{{$trans_count}}</span></div>
                                         <div class="stat-heading">Pemesan</div>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">49</span></div>
+                                        <div class="stat-text">{{$trans_success_count}}</span></div>
                                         <div class="stat-heading">Reservasi Berhasil</div>
                                     </div>
                                 </div>
@@ -72,8 +72,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">6</span></div>
-                                        <div class="stat-heading">Reservasi Gagal</div>
+                                        <div class="stat-text">{{$trans_pending_count}}</span></div>
+                                        <div class="stat-heading">Reservasi Pending</div>
                                     </div>
                                 </div>
                             </div>
