@@ -10,9 +10,9 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'booking_numbers_id',
+        'name_place',
         'users_id',
-        'kuliner_places_id',
+        'booking_number',
         'date',
         'time',
         'transaction_total',
@@ -24,16 +24,6 @@ class Transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'users_id', 'id');
-    }
-
-    public function booking_number()
-    {
-        return $this->belongsTo(BookingNumber::class,'booking_numbers_id', 'id');
-    }
-
-    public function kuliner_place()
-    {
-        return $this->belongsTo(KulinerPlace::class,'kuliner_places_id', 'id');
     }
 
 }

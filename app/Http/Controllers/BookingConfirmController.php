@@ -12,7 +12,7 @@ class BookingConfirmController extends Controller
     public function index(Request $request, $id)
     {
         $item = BookingNumber::with(['kuliner_place'])->findOrFail($id);
-        return view('pages.book-confirm', [
+        return view('pages.kuliner-food', [
             'item'=>$item
         ]);
     }
@@ -28,9 +28,9 @@ class BookingConfirmController extends Controller
 
         $trans_total = 20000;
         Transaction::create([
-            'booking_numbers_id'=>$book->id,
+            'name_place'=>$book->kuliner_place->name,
             'users_id' => Auth::user()->id,
-            'kuliner_places_id'=> $book->kuliner_place->id,
+            'booking_number'=> $book->nomer,
             'date'=>$data['date'],
             'time'=>$data['time'],
             'transaction_total'=>$trans_total,

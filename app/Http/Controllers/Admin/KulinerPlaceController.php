@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\KulinerPlace;
+use App\Models\BookingNumber;
 use App\Http\Requests\Admin\KulinerRequest;
 
 class KulinerPlaceController extends Controller
@@ -107,7 +108,12 @@ class KulinerPlaceController extends Controller
     public function destroy($id)
     {
         $item = KulinerPlace::findOrFail($id);
+
+        $book_numbers = BookingNumber::whereIn('booking_numbers_id', [$item->id]);
+        // dd($book_numbers->count());
+        $book_numbers->delete();
         $item -> delete();
+
         return redirect()->route('kuliner-place.index');
     }
 }

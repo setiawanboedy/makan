@@ -1,10 +1,10 @@
 @extends('layouts.auth')
-@section('title','Masuk - Makan')
+@section('title', 'Masuk - Makan')
 @section('content')
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full dark:hidden" src="{{url('frontend/img/login-office.jpeg')}}"
-                alt="Office" />
+            <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
+                src="{{ url('frontend/img/login-office.jpeg') }}" alt="Office" />
 
         </div>
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
@@ -44,8 +44,7 @@ is-invalid
                     </label>
 
                     <!-- You should use a button here, as the anchor is only used for the example  -->
-                    <button type="submit"
-                    style="background-color: #0e9f6e"
+                    <button type="submit" style="background-color: #0e9f6e"
                         class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                         Log in
                     </button>
@@ -54,20 +53,19 @@ is-invalid
                 </form>
                 <hr class="my-8" />
 
-                    @if (Route::has('password.request'))
-                        <p class="mt-4">
-                            <a class="text-sm font-medium text-green-500 hover:underline"
-                                href="{{ route('password.request') }}">
-                                Lupa kata sandi?
-                            </a>
-                        </p>
-                    @endif
-                    <p class="mt-1">
+                @if (Route::has('password.request'))
+                    <p class="mt-4">
                         <a class="text-sm font-medium text-green-500 hover:underline"
-                            href="{{ route('register') }}">
-                            Buat akun
+                            href="{{ route('password.request') }}">
+                            Lupa kata sandi?
                         </a>
                     </p>
+                @endif
+                <p class="mt-1">
+                    <a class="text-sm font-medium text-green-500 hover:underline" href="{{ route('register') }}">
+                        Buat akun
+                    </a>
+                </p>
             </div>
         </div>
     </div>

@@ -37,11 +37,15 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jam buka</a>
                             <div class="dropdown-menu rounded-3 m-0">
-                                <p class="dropdown-item">Monday
+                                <p class="dropdown-item">Senin
                                     10:00-21:30</p>
-                                <p class="dropdown-item">Monday
+                                <p class="dropdown-item">Selasa
                                     10:00-21:30</p>
-                                <p class="dropdown-item">Monday
+                                <p class="dropdown-item">Rabu
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Kamis
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Jumat
                                     10:00-21:30</p>
                             </div>
                         </div>
@@ -52,7 +56,8 @@
                 </ul>
             </div>
             <div class="col-md-5 d-flex justify-content-end">
-                <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}" alt="Image" width="230"/>
+                <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}"
+                    alt="Image" width="430" style="height: max-height: 500px" />
             </div>
         </div>
         <div class="col-md-6 dest-rating py-lg-3">
@@ -68,7 +73,7 @@
                 <li class="nav-item me-2">
                     <div class="row text-center">
                         <div class="col-7">$$$$</div>
-                        <div class="col-lg-8">{{$item->avgprice}}</div>
+                        <div class="col-lg-8">{{ $item->avgprice }}</div>
                     </div>
                 </li>
             </ul>
@@ -109,7 +114,8 @@
                                         </p>
                                     </div>
                                     <div class="d-grid border-top">
-                                        <a href="{{route('book-confirm', $number->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                        <a href="{{ route('book-confirm', $number->id) }}"
+                                            class="btn btn-primary btn-block">Booking</a>
                                     </div>
                                 </div>
                             </div>

@@ -14,22 +14,51 @@
         <nav class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
                 <li>
-                    <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+                    <a href="{{ route('home') }}"
+                        class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
                 </li>
                 <li>
-                    <a href="{{ route('kuliner') }}" class="nav-item nav-link {{ request()->is('kuliner') ? 'active' : '' }}">Kuliner</a>
+                    <a href="{{ route('kuliner') }}"
+                        class="nav-item nav-link {{ request()->is('kuliner') ? 'active' : '' }}">Kuliner</a>
                 </li>
 
             </ul>
+
+            <div class="dropdown-cart background-button me-2">
+                <a href="#" class="dropdown-toggle-item" id="cartDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="icon-header-item icon-header-noti" data-notify="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-bag-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+                        </svg>
+                    </div>
+                </a>
+                <div class="dropdown-menu-item" aria-labelledby="cartDropdown">
+                  <ul class="cart-items">
+                    <!-- Daftar item dalam cart -->
+                    <li>
+                     {{-- item --}}
+                    </li>
+                  </ul>
+                  <div class="cart-footer">
+                    <p class="total-price">Total: $30.00</p>
+                    <a href="#" class="checkout-button">Checkout</a>
+                  </div>
+                </div>
+              </div>
+
+
             @guest
-                <a href="{{ route('auth') }}" class="btn btn-primary px-3 d-none d-lg-flex">MASUK</a>
+                <div class="ps-md-3">
+                    <a href="{{ route('auth') }}" class="btn btn-primary px-3 nav-item">MASUK</a>
+                </div>
             @endguest
             @auth
-                <div class="nav-item dropdown user-area">
+                <div class=" dropdown user-area">
                     <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                        {{-- https://ui-avatars.com/api/?name={{ $detail->username }} --}}
-                        <img class="user-avatar rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ $user->name }}"
-                            alt="User Avatar">
+                        <img class="user-avatar rounded-circle img-thumbnail"
+                            src="https://ui-avatars.com/api/?name={{ $user->name }}" alt="User Avatar">
                     </a>
                     <div class="user-menu dropdown-menu rounded-3 m-0">
                         <a class="nav-link" href="{{ route('transaction-user') }}"><i class="fa fa- user"></i>Pemesanan</a>
@@ -43,6 +72,7 @@
                 </div>
 
             @endauth
+
         </nav>
     </nav>
 </div>

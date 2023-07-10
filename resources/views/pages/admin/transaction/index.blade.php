@@ -29,9 +29,9 @@
                         @forelse ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->kuliner_place->name }}</td>
+                                <td>{{ $item->name_place }}</td>
                                 <td>{{ $item->user->name }}</td>
-                                <td>{{ $item->booking_number->nomer}}</td>
+                                <td>{{ $item->booking_number}}</td>
                                 <td>{{$item->date}} & {{$item->time}}</td>
                                 <td>Rp {{ $item->transaction_total }}</td>
                                 <td>{{ $item->transaction_status }}</td>
