@@ -12,7 +12,7 @@ class BookingConfirmController extends Controller
     public function index(Request $request, $id)
     {
         $item = BookingNumber::with(['kuliner_place'])->findOrFail($id);
-        return view('pages.kuliner-food', [
+        return view('pages.book-confirm', [
             'item'=>$item
         ]);
     }
@@ -39,7 +39,5 @@ class BookingConfirmController extends Controller
 
 
         return view('pages.success');
-
-
     }
 }

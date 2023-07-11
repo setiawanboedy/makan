@@ -15,6 +15,7 @@ class Transaction extends Model
         'booking_number',
         'date',
         'time',
+        'prove',
         'transaction_total',
         'transaction_status'
        ];
@@ -24,6 +25,9 @@ class Transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'users_id', 'id');
+    }
+    public function details(){
+        return $this->hasMany( TransactionDetail::class, 'transaction_id', 'id' );
     }
 
 }

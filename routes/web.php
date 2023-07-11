@@ -20,6 +20,7 @@ Route::namespace('App\Http\Controllers')
     Route::get('/auth', 'AuthController@index')->name('auth');
     Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
+    Route::get('/kuliner/food', 'KulinerFoodController@index')->name('food-kuliner.index');
     Route::get('/kuliner/confirm/{id}', 'BookingConfirmController@index')->name('book-confirm');
 
 });
@@ -45,6 +46,24 @@ Route::namespace('App\Http\Controllers')
         Route::get('/profile', 'index')->name('profile');
     });
 
+Route::namespace('App\Http\Controllers')
+    ->middleware(['auth','web'])
+    ->controller(KulinerFoodController::class)
+    ->group(function(){
+        Route::post('/kuliner/food', 'addToCart')->name('food.add');
+    });
+
+Route::namespace('App\Http\Controllers')
+->middleware(['auth','web'])
+->controller(CartController::class)
+->group(function(){
+    Route::get('cart', 'cartList')->name('cart.list');
+    Route::post('cart', 'addToCart')->name('cart.store');
+    Route::post('update-cart','updateCart')->name('cart.update');
+    Route::delete('remove/{id}','removeCart')->name('cart.remove');
+    Route::post('checkout', 'checkout')->name('cart.checkout');
+});
+
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
     ->middleware(['auth','admin'])
@@ -53,6 +72,7 @@ Route::prefix('admin')
         Route::resource('kuliner-place', KulinerPlaceController::class);
         Route::resource('booking-number', BookingNumberController::class);
         Route::resource('transaction', TransactionController::class);
+        Route::resource('food', FoodController::class);
     });
 
 Auth::routes();

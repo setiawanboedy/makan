@@ -12,6 +12,9 @@
                     <li class="{{ request()->is('admin/booking-number') ? 'active' : '' }}">
                         <a href="{{route('booking-number.index')}}"><i class="menu-icon fa fa-sort-numeric-asc"></i>Nomer Booking </a>
                     </li>
+                    <li class="{{ request()->is('admin/food') ? 'active' : '' }}">
+                        <a href="{{route('food.index')}}"><i class="menu-icon fa fa-cutlery" aria-hidden="true"></i>Makanan </a>
+                    </li>
                     <li class="{{ request()->is('admin/transaction') ? 'active' : '' }}">
                         <a href="{{route('transaction.index')}}"><i class="menu-icon fa fa-money"></i>Transaksi </a>
                     </li>

@@ -113,10 +113,18 @@
                                             <i class="fa fa-bookmark text-primary me-2"></i>{{ $number->paket }}
                                         </p>
                                     </div>
-                                    <div class="d-grid border-top">
-                                        <a href="{{ route('book-confirm', $number->id) }}"
-                                            class="btn btn-primary btn-block">Booking</a>
-                                    </div>
+                                    <form action="{{route('food-kuliner.index')}}" method="get">
+                                    
+                                        <input type="hidden" name="place_id" value="{{$item->id}}">
+                                        <input type="hidden" name="number_id" value="{{$number->id}}">
+                                        <div class="d-grid border-top">
+                                        <button href="{{ route('food-kuliner.index') }}"
+                                            class="btn btn-primary btn-block">Booking</button>
+                                        </div>
+                                    </form>
+
+
+
                                 </div>
                             </div>
                         @empty
@@ -130,11 +138,5 @@
             </div>
         </div>
     </div>
-    <!-- Property List End -->
-    {{-- <div style="position: sticky; bottom: 0; display: none;" class="bg-white pay-book">
-        <nav class="container bg-white navbar-light py-3 px-4 text-center d-grid">
-            <a href="{{route('book-confirm')}}" class="btn btn-danger py-2 rounded-3" style="color: white;">Lanjutkan Pemesanan</a>
 
-        </nav>
-    </div> --}}
 @endsection

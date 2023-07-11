@@ -2,7 +2,7 @@
 @section('title', 'Makan - Detail')
 @section('content')
     <!-- Header Start -->
-    <div class="container header bg-white pt-lg-5">
+    <div class="container header bg-white pt-lg-5 pt-md-5">
         <div class="row g-0 flex-column-reverse flex-md-row">
             <div class="col-md-0 pt-5 mt-lg-5">
                 <nav aria-label="breadcrumb animated fadeIn">
@@ -18,7 +18,30 @@
         </div>
     </div>
     <!-- Header End -->
+    <section class="container">
+        <div class="row g-0 gx-5 flex-column-reverse flex-md-row">
+            <div class="col-md-6">
+                <div class="btn bg-warning rounded-pill text-white px-lg-3 py-1">
+                    <span class="fa fa-book px-lg-1"></span> {{ $number->paket }}
+                </div>
 
+                <ul class="nav nav-pills d-inline-flex justify-content-start mt-3">
+
+                    <li class="nav-item me-2">
+                        <div class="nav-item">
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jam buka</a> --}}
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-5 d-flex justify-content-end">
+                <div class="number-box text-center">Nomor <br> {{ $number->nomer }}</div>
+            </div>
+        </div>
+
+    </section>
     <!-- Property List Start -->
     <div class="container-xxl py-5 mt-3">
         <div class="container">
@@ -32,70 +55,48 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <div class="col ">
-                          <div class="card h-100">
-                            <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7821bedf-cd0f-4c47-872b-fb46d5acf1fb_da0e51f7-e9f8-43f4-9233-7d76ee66c727_Go-Biz_20190801_173813.jpeg?auto=format" class="card-img-top p-3" alt="image">
-                            <div class="card-body">
-                              <h5 class="card-title">Paket Hemat Big Mac, Large GRATIS McFlurry feat. OREO</h5>
-                              <p class="card-text h6 py-md-2">Rp 20.000</p>
+                        @forelse ($item->food as $product)
+                            <div class="col ">
+                                <div class="card h-100">
+                                    <img src="{{ Storage::url($product->image) }}" class="card-img-top p-3" alt="image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $product->name }}</h5>
+                                        <p class="card-text h6 py-md-2">Rp {{ $product->price }}</p>
+                                    </div>
+
+                                    <form action="{{route('food.add')}}" method="post">
+                                        @csrf
+
+                                        <div class="text-center pb-md-3 d-grid px-md-3 add ">
+                                            <input type="hidden" name="food_id" value="{{$product->id}}">
+                                            <input type="hidden" name="place_id" value="{{$item->id}}">
+                                            <input type="hidden" name="nomer" value="{{$number->nomer}}">
+                                            <input type="hidden" name="name" value="{{$product->name}}">
+                                            <input type="hidden" name="price" value="{{$product->price}}">
+                                            <input type="hidden" name="image" value="{{$product->image}}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button class="btn btn-outline-primary">Tambah</button>
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
-                            <div class="text-center pb-md-3 d-grid px-md-3 add">
-                                <a href="#" class="btn btn-outline-primary">Tambah</a>
+                        @empty
+                            <div class="text-lg-center">
+                                <h5>Tidak ada produk makanan</h5>
                             </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                              <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/fccf6f3d-8daa-4409-a629-c08bd31f7dca_c9867d28-bc96-4190-b87e-d822837e5ccc_Go-Biz_20190730_215640.jpeg?auto=format" class="card-img-top p-3 product-img" alt="...">
-                              <div class="card-body">
-                                <h5 class="card-title">Paket Hemat Big Mac, Large GRATIS McFlurry feat. OREO</h5>
-                                <p class="card-text h6 py-md-2">Rp 20.000</p>
-                              </div>
-                              <div class="text-center pb-md-3 d-grid px-md-3 add">
-                                  <a href="#" class="btn btn-outline-primary">Tambah</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="card h-100">
-                              <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7d252beb-b8cb-46e2-8a26-e43e75379ab6_TPO-110068_3.jpg" class="card-img-top p-3" alt="...">
-                              <div class="card-body">
-                                <h5 class="card-title">Paket Hemat Big Mac, Large GRATIS McFlurry feat. OREO</h5>
-                                <p class="card-text h6 py-md-2">Rp 20.000</p>
-                              </div>
-                              <div class="text-center pb-md-3 d-grid px-md-3 add">
-                                  <a href="#" class="btn btn-outline-primary">Tambah</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="card h-100">
-                              <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7d252beb-b8cb-46e2-8a26-e43e75379ab6_TPO-110068_3.jpg" class="card-img-top p-3" alt="...">
-                              <div class="card-body">
-                                <h5 class="card-title">Paket Hemat Big Mac, Large GRATIS McFlurry feat. OREO</h5>
-                                <p class="card-text h6 py-md-2">Rp 20.000</p>
-                              </div>
-                              <div class="text-center pb-md-3 d-grid px-md-3 add">
-                                  <a href="#" class="btn btn-outline-primary">Tambah</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="card h-100">
-                              <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7d252beb-b8cb-46e2-8a26-e43e75379ab6_TPO-110068_3.jpg" class="card-img-top p-3" alt="...">
-                              <div class="card-body">
-                                <h5 class="card-title">Paket Hemat Big Mac, Large GRATIS McFlurry feat. OREO</h5>
-                                <p class="card-text h6 py-md-2">Rp 20.000</p>
-                              </div>
-                              <div class="text-center pb-md-3 d-grid px-md-3 add">
-                                  <a href="#" class="btn btn-outline-primary">Tambah</a>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
+                        @endforelse
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {{-- <!-- Property List End -->
+    <div style="position: sticky; bottom: 0;" class="bg-white pay-book">
+        <nav class="container bg-white navbar-light py-3 px-4 text-center d-grid">
+            <a href="#" class="btn btn-danger py-2 rounded-3" style="color: white;">Lanjutkan Pemesanan</a>
 
+        </nav>
+    </div> --}}
 @endsection

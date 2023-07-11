@@ -23,4 +23,8 @@ class KulinerPlace extends Model
     public function booking_numbers(){
         return $this->hasMany(BookingNumber::class, 'booking_numbers_id', 'id');
     }
+
+    public function food(){
+        return $this->hasMany(Food::class, 'place_id', 'id');
+    }
 }
