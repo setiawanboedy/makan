@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\CartHeader;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\TransactionDetailHeader;
 
 class CartController extends Controller
 {
@@ -65,7 +66,7 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $request->validate([
-            'date'=> 'required|date',
+            'date'=> 'required',
             'time'=> 'required',
         ]);
         $data = $request->all();
@@ -73,32 +74,37 @@ class CartController extends Controller
 
         $transaction = Transaction::create([
             'users_id' => $userId,
-            'name_place'=> '',
-            'booking_number'=> 1,
             'date' => $request->date,
             'time' => $request->time,
             'transaction_total' => $request->transaction_total,
             'transaction_status' => 'PENDING'
         ]);
 
-        $carts = Cart::where('user_id', $userId)->get();
-        for ($i=0; $i < count($carts); $i++) {
-
-            TransactionDetail::create([
+        $cart_headers = CartHeader::where('user_id', $userId)->get();
+        for ($i=0; $i < count($cart_headers); $i++) {
+            $transactionHeaders = TransactionDetailHeader::create([
                 'transaction_id'=> $transaction->id,
-                'food_id'=> $carts[$i]->food_id,
-                'image'=> $carts[$i]->image,
-                'name'=>$carts[$i]->name,
-                'price'=>$carts[$i]->price,
-                'quantity'=>$carts[$i]->quantity,
-                'total'=> $carts[$i]->total
+                'name_place'=> $cart_headers[$i]->place->name,
+                'booking_number'=> $cart_headers[$i]->nomer,
             ]);
+
+            $carts = $cart_headers[$i]->carts;
+            for ($j=0; $j < count($carts); $j++) {
+
+                TransactionDetail::create([
+                    'transactionHeader_id'=> $transactionHeaders->id,
+                    'food_id'=> $carts[$j]->food_id,
+                    'image'=> $carts[$j]->image,
+                    'name'=>$carts[$j]->name,
+                    'price'=>$carts[$j]->price,
+                    'quantity'=>$carts[$j]->quantity,
+                    'total'=> $carts[$j]->total
+                ]);
+            }
+
         }
 
-        if ($request->pay_method == 1) {
-            return redirect()->route('transaction-user.index');
-        } else {
-            return redirect()->route('payment.index', $transaction->id);
-        }
+            return view('pages.payment-confirm', ['trans_id'=>$transaction->id]);
+
     }
 }

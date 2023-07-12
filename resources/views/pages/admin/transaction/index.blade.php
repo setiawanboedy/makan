@@ -16,11 +16,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tempat Kuliner</th>
                             <th>Pemesan</th>
-                            <th>Nomer Meja</th>
                             <th>Tanggal dan Waktu</th>
                             <th>Total</th>
+                            <th>Bukti</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -29,16 +28,22 @@
                         @forelse ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name_place }}</td>
                                 <td>{{ $item->user->name }}</td>
-                                <td>{{ $item->booking_number}}</td>
                                 <td>{{$item->date}} & {{$item->time}}</td>
                                 <td>Rp {{ $item->transaction_total }}</td>
+                                <td>
+                                    @if ($item->prove != null)
+                                    <img src="/{{$item->prove}}" alt="" style="width: 80px; height:80px" class="img-thumbnail">
+                                    @else
+                                    Belum
+                                    @endif
+
+                                </td>
                                 <td>{{ $item->transaction_status }}</td>
                                 <td>
-                                    {{-- <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
+                                    <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
-                                    </a> --}}
+                                    </a>
                                     <a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil"></i>
                                     </a>

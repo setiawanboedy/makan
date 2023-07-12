@@ -9,7 +9,7 @@ class TransactionDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'transaction_id',
+        'transactionHeader_id',
         'food_id',
         'image',
         'name',
@@ -21,9 +21,4 @@ class TransactionDetail extends Model
     protected $hidden = [
 
     ];
-
-    public function transaction()
-    {
-        return $this->belongsTo(Transaction::class,'transaction_id', 'id');
-    }
 }

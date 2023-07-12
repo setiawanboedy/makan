@@ -9,6 +9,15 @@
         <div class="container py-5 ">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
+                    @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     <div class="">
                         <div class="">
                             <div class="row">
@@ -24,11 +33,12 @@
                                                             <h5>{{ $header->place->name }}</h5>
                                                         </div>
                                                         <div class="d-flex flex-row">
-                                                            <form action="{{route('cart.removeHeader', $header->id)}}" method="post">
+                                                            <form action="{{ route('cart.removeHeader', $header->id) }}"
+                                                                method="post">
                                                                 @method('delete')
                                                                 @csrf
                                                                 <button style="color: #cecece; border: none"><i
-                                                                    class=" fas fa-trash-alt" ></i></button>
+                                                                        class=" fas fa-trash-alt"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -86,11 +96,12 @@
                                                             <div style="width: 100px;" class="me-md-3">
                                                                 <h5 class="mb-0">Rp {{ $item->total }}</h5>
                                                             </div>
-                                                            <form action="{{route('cart.remove', $item->id)}}" method="post">
+                                                            <form action="{{ route('cart.remove', $item->id) }}"
+                                                                method="post">
                                                                 @method('delete')
                                                                 @csrf
                                                                 <button class="btn btn-danger" style="color: #cecece;"><i
-                                                                    class=" fas fa-trash-alt" ></i></button>
+                                                                        class=" fas fa-trash-alt"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -124,43 +135,45 @@
                                             <a href="#!" type="submit" class="text-white"><i
                                                     class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                            <form class="mt-4">
+                                            <form action="{{ route('cart.checkout') }}" class="mt-4" method="POST">
+                                                @csrf
                                                 <div class="form-outline form-white mb-4">
-                                                    <input type="date" id="typeName"
+                                                    <input type="date" name="date" id="typeName"
                                                         class="form-control form-control-lg" siez="17" />
                                                     <label class="form-label" for="typeName">Tanggal</label>
                                                 </div>
 
                                                 <div class="form-outline form-white mb-4">
-                                                    <input type="text" id="typeText"
+                                                    <input type="text" id="typeText" name="time"
                                                         class="form-control form-control-lg" siez="17"
                                                         placeholder="Jam 12 siang" minlength="19" maxlength="19" />
                                                     <label class="form-label" for="typeText">Waktu</label>
                                                 </div>
 
-                                            </form>
 
-                                            <hr class="my-4">
 
-                                            <div class="d-flex justify-content-between">
-                                                <p class="mb-2">Pajak (10%)</p>
-                                                <p class="mb-2">Rp {{ $pajak }}</p>
-                                            </div>
+                                                <hr class="my-4">
 
-                                            <div class="d-flex justify-content-between mb-4">
-                                                <p class="mb-2">Total</p>
-                                                <p class="mb-2">Rp {{ $total }}</p>
-                                            </div>
-
-                                            <button type="button" class="btn btn-block btn-lg"
-                                                style="background-color: #717FE0">
                                                 <div class="d-flex justify-content-between">
-
-                                                    <span class="text-white">Checkout <i
-                                                            class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    <p class="mb-2">Pajak (10%)</p>
+                                                    <p class="mb-2">Rp {{ $pajak }}</p>
                                                 </div>
-                                            </button>
 
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <p class="mb-2">Total</p>
+                                                    <p class="mb-2">Rp {{ $total }}</p>
+                                                </div>
+                                                <input type="hidden" name="transaction_total"
+                                                    value="{{ $total }}">
+                                                <button class="btn btn-block btn-lg"
+                                                    style="background-color: #717FE0">
+                                                    <div class="d-flex justify-content-between">
+
+                                                        <span class="text-white">Checkout <i
+                                                                class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    </div>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
 

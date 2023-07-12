@@ -54,7 +54,11 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Transaction::findOrFail($id);
+
+        return view('pages.admin.transaction.detail',[
+            'item' => $item
+        ]);
     }
 
     /**

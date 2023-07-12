@@ -64,6 +64,13 @@ Route::namespace('App\Http\Controllers')
     Route::post('checkout', 'checkout')->name('cart.checkout');
 });
 
+Route::namespace('App\Http\Controllers')
+    ->middleware(['auth','web'])
+    ->controller(PaymentController::class)
+    ->group(function(){
+        Route::post('checkout/payment', 'upload')->name('payment.store');
+    });
+
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
     ->middleware(['auth','admin'])
