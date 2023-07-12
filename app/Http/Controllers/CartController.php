@@ -56,7 +56,7 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $request->validate([
-            'date'=> 'required',
+            'date'=> 'required|date',
             'time'=> 'required',
         ]);
         $data = $request->all();

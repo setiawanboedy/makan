@@ -18,57 +18,71 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             @forelse ($cartHeaders as $header)
-                                            <div class="">
-                                                <h5>{{$header->place->name}}</h5>
-                                                <p>Meja Nomor {{$header->nomer}}</p>
-                                            </div>
-                                            @foreach ($header->carts as $item)
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="{{Storage::url($item->image)}}"
-                                                            class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>{{$item->name}}</h5>
-                                                        <p class="small mb-0">Rp {{$item->price}}</p>
-                                                    </div>
+                                                <div class="">
+                                                    <h5>{{ $header->place->name }}</h5>
+                                                    <p>Meja Nomor {{ $header->nomer }}</p>
                                                 </div>
-                                                <div class="d-flex flex-row align-items-center btn-focus">
-                                                    <form action="{{route('cart.update')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="food_id" value="{{$item->food_id}}">
-                                                        <input type="hidden" name="place_id" value="{{$header->place->id}}">
-                                                        <input type="hidden" name="nomer" value="{{$header->nomer}}">
-                                                        <input type="hidden" name="name" value="{{$item->name}}">
-                                                        <input type="hidden" name="price" value="{{$item->price}}">
-                                                        <input type="hidden" name="image" value="{{$item->image}}">
-                                                        <input type="hidden" name="header_id" value="{{$header->id}}">
+                                                @foreach ($header->carts as $item)
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            <div>
+                                                                <img src="{{ Storage::url($item->image) }}"
+                                                                    class="img-fluid rounded-3" alt="Shopping item"
+                                                                    style="width: 65px;">
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h5>{{ $item->name }}</h5>
+                                                                <p class="small mb-0">Rp {{ $item->price }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row align-items-center btn-focus">
+                                                            <form action="{{ route('cart.update') }}" method="post">
+                                                                @csrf
+                                                                <div class="d-flex flex-row align-items-center">
+                                                                    <input type="hidden" name="food_id"
+                                                                        value="{{ $item->food_id }}">
+                                                                    <input type="hidden" name="place_id"
+                                                                        value="{{ $header->place->id }}">
+                                                                    <input type="hidden" name="nomer"
+                                                                        value="{{ $header->nomer }}">
+                                                                    <input type="hidden" name="name"
+                                                                        value="{{ $item->name }}">
+                                                                    <input type="hidden" name="price"
+                                                                        value="{{ $item->price }}">
+                                                                    <input type="hidden" name="image"
+                                                                        value="{{ $item->image }}">
+                                                                    <input type="hidden" name="header_id"
+                                                                        value="{{ $header->id }}">
 
-                                                        <button class="btn btn-link px-2"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                            <i class="fas fa-minus"></i>
-                                                        </button>
+                                                                    <button class="btn btn-link px-2"
+                                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                                        <i class="fas fa-minus"></i>
+                                                                    </button>
 
-                                                        <input id="form1" min="0" name="quantity" value="{{$item->quantity}}"
-                                                            type="number" class="form-control form-control-sm"
-                                                            style="width: 50px;" />
+                                                                    <input id="form1" min="0" name="quantity"
+                                                                        value="{{ $item->quantity }}" type="number"
+                                                                        class="form-control form-control-sm"
+                                                                        style="width: 50px;" />
 
-                                                        <button class="btn btn-link px-2 pe-5"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </form>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">Rp {{$item->total}}</h5>
+                                                                    <button class="btn btn-link px-2 pe-5"
+                                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                                        <i class="fas fa-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            <div style="width: 100px;" class="me-md-3">
+                                                                <h5 class="mb-0">Rp {{ $item->total }}</h5>
+                                                            </div>
+                                                            <form action="{{route('cart.remove', $item->id)}}" method="post">
+                                                                @method('delete')
+                                                                @csrf
+                                                                <button class="btn btn-danger" style="color: #cecece;"><i
+                                                                    class=" fas fa-trash-alt" ></i></button>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                    <a href="#!" style="color: #cecece;"><i
-                                                            class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            @endforeach
+                                                    <hr>
+                                                @endforeach
                                             @empty
                                                 <h6 class="text-center p-4">Keranjang kosong</h6>
                                             @endforelse
@@ -100,16 +114,14 @@
                                             <form class="mt-4">
                                                 <div class="form-outline form-white mb-4">
                                                     <input type="date" id="typeName"
-                                                        class="form-control form-control-lg" siez="17"
-                                                         />
+                                                        class="form-control form-control-lg" siez="17" />
                                                     <label class="form-label" for="typeName">Tanggal</label>
                                                 </div>
 
                                                 <div class="form-outline form-white mb-4">
                                                     <input type="text" id="typeText"
                                                         class="form-control form-control-lg" siez="17"
-                                                        placeholder="Jam 12 siang" minlength="19"
-                                                        maxlength="19" />
+                                                        placeholder="Jam 12 siang" minlength="19" maxlength="19" />
                                                     <label class="form-label" for="typeText">Waktu</label>
                                                 </div>
 
@@ -119,18 +131,20 @@
 
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Pajak (10%)</p>
-                                                <p class="mb-2">Rp {{$pajak}}</p>
+                                                <p class="mb-2">Rp {{ $pajak }}</p>
                                             </div>
 
                                             <div class="d-flex justify-content-between mb-4">
                                                 <p class="mb-2">Total</p>
-                                                <p class="mb-2">Rp {{$total}}</p>
+                                                <p class="mb-2">Rp {{ $total }}</p>
                                             </div>
 
-                                            <button type="button" class="btn btn-block btn-lg" style="background-color: #717FE0">
+                                            <button type="button" class="btn btn-block btn-lg"
+                                                style="background-color: #717FE0">
                                                 <div class="d-flex justify-content-between">
 
-                                                    <span class="text-white">Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    <span class="text-white">Checkout <i
+                                                            class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>
 

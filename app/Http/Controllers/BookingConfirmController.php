@@ -9,13 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingConfirmController extends Controller
 {
-    public function index(Request $request, $id)
-    {
-        $item = BookingNumber::with(['kuliner_place'])->findOrFail($id);
-        return view('pages.book-confirm', [
-            'item'=>$item
-        ]);
-    }
+
 
     public function submit(Request $request, $id)
     {

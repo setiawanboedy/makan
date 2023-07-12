@@ -11,6 +11,7 @@ class CartHeader extends Model
     protected $fillable = [
         'place_id',
         'user_id',
+        'nomer_id',
         'nomer',
     ];
 
