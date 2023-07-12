@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Image;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -15,13 +18,13 @@ class PaymentController extends Controller
         ]);
         $data = $request->all();
         $userId = Auth::user()->id;
-        $trans = Transaction::findOrFail($trans_id);
+        $trans = Transaction::findOrFail($request->trans_id);
 
         $img = Image::make($request->file('prove'));
         $img->greyscale()->save('storage/assets/prove/'.Str::random(20).'.jpg');
         $trans->prove = $img->dirname.'/'.$img->basename;
         $trans->save();
 
-        return redirect()->route('user-trans.index');
+        return redirect()->route('home');
     }
 }

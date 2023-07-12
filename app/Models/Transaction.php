@@ -10,9 +10,7 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_place',
         'users_id',
-        'booking_number',
         'date',
         'time',
         'prove',
