@@ -31,15 +31,7 @@ class KulinerFoodController extends Controller
         $cart_header_nomer = CartHeader::where('nomer_id', $request->nomer_id)->first();
         $cart_header_place = CartHeader::where('place_id', $request->place_id)->first();
         if ($cart_header_nomer && $cart_header_place) {
-            // if ($idItem && ) {
-            //     $cart = Cart::where('food_id',$request->food_id)->first();
-            //     $data['quantity'] = $cart->quantity + $request->quantity;
-            //     $data['total'] = $request->price * ($cart->quantity + $request->quantity);
-            //     $data['user_id'] = $userId;
-            //     // dd('if '.$cart_header_nomer);
-            //     $data['header_id'] = $cart_header_nomer->id;
-            //     $cart->update($data);
-            // }else{
+
                 $data['total'] = $request->price * $request->quantity;
                 $data['user_id'] = $userId;
                 $data['header_id'] = $cart_header_nomer->id;
@@ -49,6 +41,7 @@ class KulinerFoodController extends Controller
             $cartHeader = CartHeader::create([
                 'user_id'=> $userId,
                 'place_id'=> $request->place_id,
+                'nomer_id'=> $request->nomer_id,
                 'nomer'=>$request->nomer,
             ]);
             $data['total'] = $request->price * $request->quantity;

@@ -19,7 +19,20 @@
                                         <div class="card-body">
                                             @forelse ($cartHeaders as $header)
                                                 <div class="">
-                                                    <h5>{{ $header->place->name }}</h5>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row">
+                                                            <h5>{{ $header->place->name }}</h5>
+                                                        </div>
+                                                        <div class="d-flex flex-row">
+                                                            <form action="{{route('cart.removeHeader', $header->id)}}" method="post">
+                                                                @method('delete')
+                                                                @csrf
+                                                                <button style="color: #cecece; border: none"><i
+                                                                    class=" fas fa-trash-alt" ></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
                                                     <p>Meja Nomor {{ $header->nomer }}</p>
                                                 </div>
                                                 @foreach ($header->carts as $item)

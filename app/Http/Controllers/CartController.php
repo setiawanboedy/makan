@@ -53,6 +53,15 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
 
+    public function removeCartHeader($id)
+    {
+
+        $cart_header = CartHeader::findOrFail($id);
+        Cart::where('header_id', $cart_header->id)->delete();
+        $cart_header->delete();
+        return redirect()->route('cart.list');
+    }
+
     public function checkout(Request $request)
     {
         $request->validate([

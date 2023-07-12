@@ -60,6 +60,7 @@ Route::namespace('App\Http\Controllers')
     Route::post('cart', 'addToCart')->name('cart.store');
     Route::post('update-cart','updateCart')->name('cart.update');
     Route::delete('remove/{id}','removeCart')->name('cart.remove');
+    Route::delete('removeHeader/{id}','removeCartHeader')->name('cart.removeHeader');
     Route::post('checkout', 'checkout')->name('cart.checkout');
 });
 
