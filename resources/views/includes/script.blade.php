@@ -54,3 +54,7 @@
         $('.image-upload-wrap').removeClass('image-dropping');
     });
 </script>
+
+
+
+

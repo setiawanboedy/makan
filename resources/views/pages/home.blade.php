@@ -33,6 +33,30 @@
     </div>
     <!-- Header End -->
 
+    <div class=" container testimonial-item bg-light rounded mb-5" style="max-width: 700px; padding: 15px;">
+        <div class="container card border-0 shadow wow fadeIn" data-wow-delay="0.1s" style="padding: 15px; ">
+            <div class="container card-body">
+                <div class="card-title">Lokasi anda</div>
+                <div class="row g-2">
+                    <div class="col-md-9">
+                        <div class="row g-2">
+                            <div class="col-md-10">
+                                <input type="hidden" id="use-location-bias" value="" checked />
+                                <input id="pac-input" type="text"
+                                    class="form-control py-3 rounded-pill border-1 border-dark"
+                                    placeholder="Lokasi resto terdekat">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary border-0 rounded-pill w-100 py-3">Cari</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Category Start -->
     <div class="container-xxl py-5">
@@ -172,7 +196,8 @@
                                                 {{ $item->status }}</div>
                                             <div
                                                 class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                                <span class="fa fa-star" style="color: orange;"></span> 4.5</div>
+                                                <span class="fa fa-star" style="color: orange;"></span> 4.5
+                                            </div>
                                         </div>
                                         <div class="p-4 pb-0">
                                             <a class="d-block h5 mb-2">{{ $item->name }}</a>
@@ -263,3 +288,43 @@
     </div>
     <!-- Testimonial End -->
 @endsection
+@push('addon-script')
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.api_key')}}&callback=initMap&libraries=places&v=weekly"
+        defer></script>
+    <script>
+        function initMap() {
+
+            const input = document.getElementById("pac-input");
+            const biasInputElement = document.getElementById("use-location-bias");
+            const options = {
+                fields: ["formatted_address", "geometry", "name"],
+                strictBounds: false,
+                types: ["establishment"],
+            };
+
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
+            autocomplete.addListener("place_changed", () => {
+
+                const place = autocomplete.getPlace();
+
+                if (!place.geometry || !place.geometry.location) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                var lat = place.geometry.location.lat();
+                var lang = place.geometry.location.lng();
+                console.log(lat + ' and ' + lang);
+                // infowindowContent.children["place-name"].textContent = place.name;
+                // infowindowContent.children["place-address"].textContent =
+                //   place.formatted_address;
+            });
+
+        }
+
+        window.initMap = initMap;
+    </script>
+@endpush

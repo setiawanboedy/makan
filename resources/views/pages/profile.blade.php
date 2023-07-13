@@ -19,6 +19,7 @@
                                 <p class="text-black-50 mb-1">{{$user->roles}}</p>
 
                                 <div class="h5 text-black-50">Member</div>
+                                
                             </div>
                         </div>
                         <hr class="my-4">
