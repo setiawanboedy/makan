@@ -28,6 +28,7 @@ class KulinerRequest extends FormRequest
             'status'=>'max:255',
             'image'=>'required|image',
             'address'=>'required|max:255',
+            'latlng'=>'required',
             'table'=>'required|integer',
             'room'=>'required|integer'
         ];

@@ -42,6 +42,7 @@
                     <div class="form-group">
                         <label for="address">Alamat</label>
                         <div id="map-kuliner"></div>
+                        <input type="hidden" id="latlng" name="latlng">
                         <textarea id="address" name="address" rows="3" class="d-block w-100 form-control mt-2"
                             placeholder="Alamat Lengkap (Atur lebih dulu di map)">{{ old('address') }}</textarea>
                     </div>
@@ -88,7 +89,8 @@
                 AdvancedMarkerElement
             } = await google.maps.importLibrary("marker");
 
-            const address = document.getElementById('address');
+            const address = document.getElementById("address");
+            const latlngInput = document.getElementById("latlng");
             const geocoder = new google.maps.Geocoder();
 
             const map = new Map(document.getElementById("map-kuliner"), {
@@ -111,10 +113,10 @@
                 gmpDraggable: true,
                 title: "This marker is draggable.",
             });
-
+            latlngInput.value = "-8.581632599999997,116.1013524";
             draggableMarker.addListener("dragend", (event) => {
                 const position = draggableMarker.position;
-
+                latlngInput.value = `${position.lat},${position.lng}`;
                 geocodeLatLng(position, geocoder, infoWindow, draggableMarker);
             });
 
@@ -144,5 +146,12 @@
         }
 
         window.initMap = initMap;
+
+        // const input = document.getElementById("latlng").value;
+        // const latlngStr = input.split(",", 2);
+        // const latlng = {
+        //   lat: parseFloat(latlngStr[0]),
+        //   lng: parseFloat(latlngStr[1]),
+        // };
     </script>
 @endpush

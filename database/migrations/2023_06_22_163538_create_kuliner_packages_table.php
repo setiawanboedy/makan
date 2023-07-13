@@ -20,6 +20,7 @@ class CreateKulinerPackagesTable extends Migration
             $table->text('image');
             $table->string('avgprice');
             $table->string('address');
+            $table->string('latlng')->nullable();
             $table->integer('table');
             $table->integer('room');
             $table->timestamps();
