@@ -37,25 +37,30 @@
         <div class="container card border-0 shadow wow fadeIn" data-wow-delay="0.1s" style="padding: 15px; ">
             <div class="container card-body">
                 <div class="card-title">Lokasi anda</div>
-                <div class="row g-2">
-                    <div class="col-md-9">
-                        <div class="row g-2">
-                            <div class="col-md-10">
-                                <input type="hidden" id="use-location-bias" value="" checked />
-                                <input type="hidden" id="lat" />
-                                <input type="hidden" id="lng" />
-                                <input id="pac-input" type="text"
-                                    class="form-control py-3 rounded-pill border-1 border-dark"
-                                    placeholder="Lokasi resto terdekat">
+                <form action="{{ route('kuliner.find') }}" method="post">
+                    @csrf
+                    <div class="row g-2">
+                        <div class="col-md-9">
+                            <div class="row g-2">
+                                <div class="col-md-10">
+
+                                    <input type="hidden" id="use-location-bias" value="" checked />
+                                    <input type="hidden" id="lat" name="lat"/>
+                                    <input type="hidden" id="lng" name="lng"/>
+                                    <input id="pac-input" type="text"
+                                        class="form-control py-3 rounded-pill border-1 border-dark"
+                                        placeholder="Lokasi resto terdekat">
+
+                                </div>
 
                             </div>
-
                         </div>
+                        <div class="col-md-3">
+                            <button id="searchBtn" class="btn btn-primary border-0 rounded-pill w-100 py-3">Cari</button>
+                        </div>
+
                     </div>
-                    <div class="col-md-3">
-                        <button id="searchBtn" class="btn btn-primary border-0 rounded-pill w-100 py-3">Cari</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -192,7 +197,7 @@
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <a href="{{ route('kuliner-detail', $item->id) }}">
                                     <div class="property-item rounded overflow-hidden">
-                                        <div class="position-relative overflow-hidden">
+                                        <div class="img-item position-relative overflow-hidden">
                                             <img class="img-fluid" src="{{ Storage::url($item->image) }}" alt="">
                                             <div
                                                 class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
@@ -204,7 +209,7 @@
                                         </div>
                                         <div class="p-4 pb-0">
                                             <a class="d-block h5 mb-2">{{ $item->name }}</a>
-                                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->address }}
+                                            <p class="multiline-ellipsis"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->address }}
                                             </p>
                                         </div>
                                         <div class="d-flex border-top">
@@ -355,14 +360,14 @@
                         };
 
                         lat.value = pos.lat;
-                        lat.value = pos.lng;
+                        lng.value = pos.lng;
                         console.log("current: " + pos.lat + " and " + pos.lng);
                     },
                     (e) => {
                         console.log("error: " + e);
                     }, {
                         enableHighAccuracy: true,
-                        timeout: 5000,
+                        timeout: 3000,
                     }
                 );
             }

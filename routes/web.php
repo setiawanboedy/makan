@@ -17,9 +17,11 @@ Route::namespace('App\Http\Controllers')
 ->group(function(){
 
     Route::get('/', 'HomeController@index')->name('home');
+    Route::post('/find', 'HomeController@find')->name('kuliner.find');
     Route::get('/auth', 'AuthController@index')->name('auth');
     Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
+    Route::get('/kuliner/near/{originLatlng}', 'KulinerNearController@index')->name('kuliner-near.index');
     Route::get('/kuliner/food', 'KulinerFoodController@index')->name('food-kuliner.index');
 
 });

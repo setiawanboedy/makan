@@ -6,28 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\KulinerPlace;
 use App\Http\Controllers\CalculateDistanceController;
 
-class HomeController extends Controller
+class KulinerNearController extends Controller
 {
-    public function index(Request $request, CalculateDistanceController $distance)
+    public function index(Request $request, CalculateDistanceController $distance, $originLatlng)
     {
         $itemPlaces = KulinerPlace::get();
 
-        // origin
-        $originLatlng = "-8.581388508596651,116.10137723105744";
-
         $item = $itemPlaces->each(fn($item) => $item->latlng = number_format($distance->calculateDistance($originLatlng, $item->latlng), 0, ',', '.'))->each;
         $filterItems = $item->getAttributes()->sortBy('latlng');
-        return view('pages.home',[
+    
+        return view('pages.kuliner-near',[
             'items'=>$filterItems
         ]);
     }
-
-    public function find(Request $request){
-        $originLatlng = $request->lat.','.$request->lng;
-
-        return redirect()->route('kuliner-near.index', [
-            'originLatlng'=>$originLatlng
-        ]);
-    }
-
 }

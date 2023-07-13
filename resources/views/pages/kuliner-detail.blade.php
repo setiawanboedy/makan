@@ -54,30 +54,29 @@
                         <p>{{ $item->address }}</p>
                     </li>
                 </ul>
+                <ul class="nav nav-pills d-inline-flex justify-content-start mb-5 mt-3">
+                    <li class="nav-item me-2">
+                        <div class="row text-center">
+                            <div class="col-7">
+                                <span class="fa fa-star" style="color: orange"></span> 4.5
+                            </div>
+                            <div class="col-lg-8">400 Ratings</div>
+                        </div>
+                    </li>
+                    <li class="nav-item me-2">
+                        <div class="row text-center">
+                            <div class="col-7">$$$$</div>
+                            <div class="col-lg-8">{{ $item->avgprice }}</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-5 d-flex justify-content-end">
                 <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}"
-                    alt="Image" width="430" style="height: max-height: 500px" />
+                    alt="Image" width="430"  />
             </div>
         </div>
-        <div class="col-md-6 dest-rating py-lg-3">
-            <ul class="nav nav-pills d-inline-flex justify-content-start mb-5 mt-3">
-                <li class="nav-item me-2">
-                    <div class="row text-center">
-                        <div class="col-7">
-                            <span class="fa fa-star" style="color: orange"></span> 4.5
-                        </div>
-                        <div class="col-lg-8">400 Ratings</div>
-                    </div>
-                </li>
-                <li class="nav-item me-2">
-                    <div class="row text-center">
-                        <div class="col-7">$$$$</div>
-                        <div class="col-lg-8">{{ $item->avgprice }}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+
     </section>
 
     <!-- Property List Start -->
@@ -114,7 +113,7 @@
                                         </p>
                                     </div>
                                     <form action="{{route('food-kuliner.index')}}" method="get">
-                                    
+
                                         <input type="hidden" name="place_id" value="{{$item->id}}">
                                         <input type="hidden" name="number_id" value="{{$number->id}}">
                                         <div class="d-grid border-top">
