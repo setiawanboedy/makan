@@ -42,8 +42,8 @@
                         <div class="row g-2">
                             <div class="col-md-10">
                                 <input type="hidden" id="use-location-bias" value="" checked />
-                                <input type="hidden" id="lat"/>
-                                <input type="hidden" id="lng"/>
+                                <input type="hidden" id="lat" />
+                                <input type="hidden" id="lng" />
                                 <input id="pac-input" type="text"
                                     class="form-control py-3 rounded-pill border-1 border-dark"
                                     placeholder="Lokasi resto terdekat">
@@ -209,7 +209,7 @@
                                         </div>
                                         <div class="d-flex border-top">
                                             <small class="flex-fill text-center border-end py-2"><i
-                                                    class="fa fa-map-marked-alt text-primary me-2"></i>{{ $item->table }}
+                                                    class="fa fa-map-marked-alt text-primary me-2"></i>{{ $item->latlng }}
                                                 Km</small>
                                             <small class="flex-fill text-center border-end py-2"><i
                                                     class="fa fa-table text-primary me-2"></i>{{ $item->table }}
@@ -327,15 +327,14 @@
 
                 lat.value = place.geometry.location.lat();
                 lng.value = place.geometry.location.lng();
-                console.log("text search: "+ place.geometry.location.lat());
+                console.log("text search: " + place.geometry.location.lat());
             });
 
             searchBtn.addEventListener("click", () => {
                 if (input.value == '') {
                     getCurrentLocation();
                 } else {
-
-                    console.log("click search: "+lat.value);
+                    console.log("click search: " + lat.value);
                 }
 
             })
@@ -344,29 +343,29 @@
 
         }
 
-        function getCurrentLocation(){
+        function getCurrentLocation() {
             const lat = document.getElementById("lat");
             const lng = document.getElementById("lng");
             if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            const pos = {
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude,
-                            };
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
 
-                            lat.value = pos.lat;
-                            lat.value = pos.lng;
-                            console.log("current: "+ pos.lat);
-                        },
-                        (e) => {
-                            console.log("error: "+e);
-                        },{
-                            enableHighAccuracy: true,
-                            timeout:5000,
-                        }
-                    );
-                }
+                        lat.value = pos.lat;
+                        lat.value = pos.lng;
+                        console.log("current: " + pos.lat + " and " + pos.lng);
+                    },
+                    (e) => {
+                        console.log("error: " + e);
+                    }, {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                    }
+                );
+            }
         }
 
         window.initMap = initMap;

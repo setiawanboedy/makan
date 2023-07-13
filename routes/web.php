@@ -31,13 +31,6 @@ Route::namespace('App\Http\Controllers')
         Route::get('/kuliner/transactions', 'index')->name('transaction-user');
     });
 
-// Route::namespace('App\Http\Controllers')
-//     ->middleware(['auth','web'])
-//     ->controller(BookingConfirmController::class)
-//     ->group(function(){
-//         Route::post('/kuliner/confirm/submit/{id}', 'submit')->name('confirm-submit');
-//     });
-
 Route::namespace('App\Http\Controllers')
     ->middleware(['auth','web'])
     ->controller(ProfileController::class)
