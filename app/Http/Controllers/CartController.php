@@ -85,6 +85,7 @@ class CartController extends Controller
             $transactionHeaders = TransactionDetailHeader::create([
                 'transaction_id'=> $transaction->id,
                 'name_place'=> $cart_headers[$i]->place->name,
+                'resto_id'=>$cart_headers[$i]->place->resto_id,
                 'booking_number'=> $cart_headers[$i]->nomer,
             ]);
 

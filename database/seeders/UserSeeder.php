@@ -20,5 +20,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'roles'=> 'ADMIN',
         ]);
+        DB::table('users')->insert([
+            'name' => 'sinaga',
+            'email' => 'resto@resto.com',
+            'password' => Hash::make('resto'),
+            'roles'=> 'RESTO',
+        ]);
     }
 }

@@ -25,11 +25,12 @@ class KulinerFoodController extends Controller
     public function addToCart(Request $request)
     {
         $data = $request->all();
-        // $idItem = Cart::where('food_id',$request->food_id)->first();
         $userId = Auth::user()->id;
 
         $cart_header_nomer = CartHeader::where('nomer_id', $request->nomer_id)->first();
         $cart_header_place = CartHeader::where('place_id', $request->place_id)->first();
+
+
         if ($cart_header_nomer && $cart_header_place) {
 
                 $data['total'] = $request->price * $request->quantity;
@@ -49,6 +50,7 @@ class KulinerFoodController extends Controller
             $data['header_id'] = $cartHeader->id;
             Cart::create($data);
         }
+
 
 
         return redirect()->route('cart.list');

@@ -15,6 +15,7 @@ class CreateKulinerPackagesTable extends Migration
     {
         Schema::create('kuliner_places', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('resto_id');
             $table->string('name');
             $table->string('status')->default('Buka');
             $table->text('image');

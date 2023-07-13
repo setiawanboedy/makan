@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\KulinerPlace;
 use App\Models\BookingNumber;
+use App\Models\User;
 use App\Http\Requests\Admin\KulinerRequest;
 
 class KulinerPlaceController extends Controller
@@ -30,7 +31,10 @@ class KulinerPlaceController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kuliner.create');
+        $restos = User::where('roles','RESTO')->get();
+        return view('pages.admin.kuliner.create',[
+            'restos'=>$restos
+        ]);
     }
 
     /**
@@ -45,7 +49,6 @@ class KulinerPlaceController extends Controller
         $data['image'] = $request->file('image')->store(
             'assets/gallery', 'public'
         );
-        // $data['slug'] = str::slug($request->title);
         KulinerPlace::create($data);
 
         return redirect()->route('kuliner-place.index');
@@ -71,8 +74,10 @@ class KulinerPlaceController extends Controller
     public function edit($id)
     {
         $item = KulinerPlace::findOrFail($id);
+        $restos = User::where('roles','RESTO')->get();
         return view('pages.admin.kuliner.edit',[
-            'item'=>$item
+            'item'=>$item,
+            'restos'=>$restos
         ]);
     }
 

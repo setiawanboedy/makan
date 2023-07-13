@@ -77,5 +77,12 @@ Route::prefix('admin')
         Route::resource('food', FoodController::class);
     });
 
+Route::prefix('resto')
+    ->namespace('App\Http\Controllers\Resto')
+    ->middleware(['auth','resto'])
+    ->group(function(){
+        Route::get('/', 'DashboardController@index')->name('dashboard-resto');
+    });
+
 Auth::routes();
 

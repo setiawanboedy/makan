@@ -30,6 +30,17 @@
                             value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
+                        <label for="resto_id">Pemilik Resto</label>
+                        <select name="resto_id" required class="form-control">
+                            <<option value="">Pilih Pemilik Resto</option>
+                            @foreach ($restos as $resto)
+                            <option value="{{$resto->id}}">
+                                {{$resto->name}}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="status">Status</label>
                         <select name="status" required class="form-control">
                             <option value="Buka">Buka</option>
@@ -147,11 +158,5 @@
 
         window.initMap = initMap;
 
-        // const input = document.getElementById("latlng").value;
-        // const latlngStr = input.split(",", 2);
-        // const latlng = {
-        //   lat: parseFloat(latlngStr[0]),
-        //   lng: parseFloat(latlngStr[1]),
-        // };
     </script>
 @endpush

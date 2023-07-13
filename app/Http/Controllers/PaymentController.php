@@ -25,6 +25,6 @@ class PaymentController extends Controller
         $trans->prove = $img->dirname.'/'.$img->basename;
         $trans->save();
 
-        return redirect()->route('home');
+        return redirect()->route('transaction-user');
     }
 }

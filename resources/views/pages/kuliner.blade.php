@@ -15,7 +15,6 @@
                     <p>Yuk, dicek tempat makan populer, favoritnya foodies lokal, dan penawaran terbaik kami ada disini!</p>
                 </div>
             </div>
-
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">

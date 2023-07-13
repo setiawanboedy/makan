@@ -16,6 +16,7 @@ class CreateTransactionTransDetailHeadersTable extends Migration
         Schema::create('transaction_detail_headers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('transaction_id');
+            $table->integer('resto_id');
             $table->integer('booking_number');
             $table->string('name_place');
             $table->timestamps();

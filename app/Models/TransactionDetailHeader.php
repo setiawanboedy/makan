@@ -10,6 +10,7 @@ class TransactionDetailHeader extends Model
     use HasFactory;
     protected $fillable = [
         'transaction_id',
+        'resto_id',
         'name_place',
         'booking_number'
     ];

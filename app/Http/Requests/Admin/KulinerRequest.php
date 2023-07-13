@@ -24,6 +24,7 @@ class KulinerRequest extends FormRequest
     public function rules()
     {
         return [
+            'resto_id'=>'required',
             'name'=>'required|max:255',
             'status'=>'max:255',
             'image'=>'required|image',

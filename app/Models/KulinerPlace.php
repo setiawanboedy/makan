@@ -9,6 +9,7 @@ class KulinerPlace extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'resto_id',
         'name',
         'status',
         'image',

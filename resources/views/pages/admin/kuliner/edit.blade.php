@@ -31,6 +31,18 @@
                             value="{{ $item->name }}">
                     </div>
                     <div class="form-group">
+                        <label for="resto_id">Pemilik Resto</label>
+                        <select name="resto_id" required class="form-control">
+                            <<option value="{{$item->resto_id}}">Tetapkan Pemilik Resto</option>
+                            @foreach ($restos as $resto)
+                            <option value="{{$resto->id}}">
+                                {{$resto->name}}
+                            </option>
+
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="status">Status</label>
                         <select name="status" required class="form-control">
                             <option value="{{ $item->status }}">Tetapkan</option>
