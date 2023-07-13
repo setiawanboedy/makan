@@ -17,6 +17,7 @@ class CreateTransactionCartHeadersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('place_id');
+            $table->integer('nomer_id');
             $table->integer('nomer');
             $table->timestamps();
         });

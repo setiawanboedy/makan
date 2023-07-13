@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->integer('food_id');
             $table->integer('user_id');
+            $table->integer('header_id');
             $table->string('name');
             $table->integer('price');
             $table->integer('quantity');
