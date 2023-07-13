@@ -3221,3 +3221,9 @@ footer.site-footer .footer-inner a {
       text-align: center;
       color: #fff;
   }
+
+/* maps */
+#map-kuliner {
+    height: 30vh;
+    width: 100%;
+  }

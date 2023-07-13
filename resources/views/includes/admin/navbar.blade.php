@@ -18,7 +18,7 @@
                     <div class="dropdown-menu" aria-labelledby="message">
                         <p class="red">You have 4 Mails</p>
                         <a class="dropdown-item media" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="backend/images/avatar/1.jpg"></span>
+                            <span class="photo media-left"><img alt="avatar" src="{{url('backend/images/avatar/1.jpg')}}"></span>
                             <div class="message media-body">
                                 <span class="name float-left">Jonathan Smith</span>
                                 <span class="time float-right">Just now</span>
