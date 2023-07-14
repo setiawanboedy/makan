@@ -63,6 +63,7 @@ Route::namespace('App\Http\Controllers')
     ->middleware(['auth','web'])
     ->controller(PaymentController::class)
     ->group(function(){
+        Route::get('checkout/payment/{transactionId}', 'index')->name('payment.index');
         Route::post('checkout/payment', 'upload')->name('payment.store');
     });
 
@@ -75,6 +76,8 @@ Route::prefix('admin')
         Route::resource('booking-number', BookingNumberController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('food', FoodController::class);
+        Route::get('managemen', 'ManageController@index')->name('manage.index');
+        Route::post('managemen', 'ManageController@role')->name('manage.update');
     });
 
 Route::prefix('resto')
@@ -83,6 +86,7 @@ Route::prefix('resto')
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard-resto');
         Route::post('/', 'DashboardController@pdf')->name('pdf-trans');
+
     });
 
 Auth::routes();

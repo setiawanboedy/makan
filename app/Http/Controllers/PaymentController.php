@@ -10,6 +10,11 @@ use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
+    public function index($transactionId){
+        return view('pages.payment-confirm', [
+            'trans_id'=>$transactionId
+        ]);
+    }
 
     public function upload(Request $request)
     {

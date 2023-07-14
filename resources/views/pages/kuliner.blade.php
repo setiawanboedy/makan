@@ -33,7 +33,7 @@
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i
-                                class="fa fa-map-marked-alt text-primary me-2"></i>{{ $item->table }}
+                                class="fa fa-map-marked-alt text-primary me-2"></i>{{ $item->latlng }}
                             Km</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-table text-primary me-2"></i>{{$item->table}} Meja</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-home text-primary me-2"></i>{{$item->room}} Ruangan</small>

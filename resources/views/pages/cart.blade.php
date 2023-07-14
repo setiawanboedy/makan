@@ -146,11 +146,9 @@
                                                 <div class="form-outline form-white mb-4">
                                                     <input type="text" id="typeText" name="time"
                                                         class="form-control form-control-lg" siez="17"
-                                                        placeholder="Jam 12 siang" minlength="19" maxlength="19" />
+                                                        placeholder="Jam 12 siang" />
                                                     <label class="form-label" for="typeText">Waktu</label>
                                                 </div>
-
-
 
                                                 <hr class="my-4">
 

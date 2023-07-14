@@ -105,7 +105,7 @@ class CartController extends Controller
 
         }
 
-            return view('pages.payment-confirm', ['trans_id'=>$transaction->id]);
+            return redirect()->route('payment.index', $transaction->id);
 
     }
 }

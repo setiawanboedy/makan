@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="col-md-2 col-lg-2 col-xl-2 text-end">
                                         @if ($item->prove == null)
-                                            <a href="#!" class="btn btn-outline-info px-3"><i class="fa fa-upload"
+                                            <a href="{{route('payment.index', $item->id)}}" class="btn btn-outline-info px-3"><i class="fa fa-upload"
                                                     aria-hidden="true"></i></a>
                                             <p>Uplaod Pembayaran</p>
                                         @else

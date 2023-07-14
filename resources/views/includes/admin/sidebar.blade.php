@@ -18,6 +18,9 @@
                     <li class="{{ request()->is('admin/transaction') ? 'active' : '' }}">
                         <a href="{{route('transaction.index')}}"><i class="menu-icon fa fa-money"></i>Transaksi </a>
                     </li>
+                    <li class="{{ request()->is('admin/managemen') ? 'active' : '' }}">
+                        <a href="{{route('manage.index')}}"><i class="menu-icon fa fa-file-archive-o"></i>Managemen User </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

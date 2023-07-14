@@ -42,7 +42,11 @@
 
                     <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                    <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-logout" style="background-color: white" href="{{ route('logout') }}"><i
+                                class="fa fa-power -off"></i>Logout</button>
+                    </form>
                 </div>
             </div>
 
