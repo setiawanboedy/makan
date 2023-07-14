@@ -82,6 +82,7 @@ Route::prefix('resto')
     ->middleware(['auth','resto'])
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard-resto');
+        Route::post('/', 'DashboardController@pdf')->name('pdf-trans');
     });
 
 Auth::routes();
