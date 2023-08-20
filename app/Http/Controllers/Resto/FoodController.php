@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Resto;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Food;
 use App\Models\KulinerPlace;
 use App\Http\Requests\Admin\FoodRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -17,8 +18,10 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $items = Food::get();
-        return view('pages.admin.food.index',[
+        $resto_id = Auth::user()->id;
+        $kuliner_place = KulinerPlace::where('resto_id',$resto_id)->get()->first();
+        $items = Food::where('place_id', $kuliner_place->id)->get();
+        return view('pages.resto.food.index',[
             'items'=>$items
         ]);
     }
@@ -30,9 +33,10 @@ class FoodController extends Controller
      */
     public function create()
     {
-        $kuliner_places = KulinerPlace::all();
-        return view('pages.admin.food.create',[
-            'kuliner_places'=>$kuliner_places
+        $resto_id = Auth::user()->id;
+        $kuliner_place = KulinerPlace::where('resto_id',$resto_id)->get()->first();
+        return view('pages.resto.food.create',[
+            'resto_id'=>$kuliner_place->id
         ]);
     }
 
@@ -72,7 +76,7 @@ class FoodController extends Controller
     public function edit($id)
     {
         $item = Food::findOrFail($id);
-        return view('pages.admin.food.edit',[
+        return view('pages.resto.food.edit',[
             'item'=>$item
         ]);
     }

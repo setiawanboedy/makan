@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('title', 'Admin - Tempat Kuliner')
+@extends('layouts.resto')
+@section('title', 'Resto - Tempat Kuliner')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -18,24 +18,24 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {{-- <th>ID</th> --}}
                             <th>Gambar</th>
                             <th>Nama</th>
                             <th>Harga</th>
-                            <th>Resto</th>
+                            {{-- <th>Resto</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($items as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                {{-- <td>{{ $item->id }}</td> --}}
                                 <td>
                                     <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px">
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->price }}</td>
-                                <td>{{ $item->kuliner_place->name }}</td>
+                                {{-- <td>{{ $item->kuliner_place->name }}</td> --}}
                                 <td>
                                     <a href="{{ route('food.edit', $item->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil"></i>

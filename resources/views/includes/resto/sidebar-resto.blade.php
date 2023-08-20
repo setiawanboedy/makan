@@ -6,7 +6,9 @@
                     <li class="{{ request()->is('resto') ? 'active' : '' }}">
                         <a href="{{route('dashboard-resto')}}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-
+                    <li class="{{ request()->is('resto/food') ? 'active' : '' }}">
+                        <a href="{{route('food.index')}}"><i class="menu-icon fa fa-cutlery" aria-hidden="true"></i>Makanan </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

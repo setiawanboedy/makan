@@ -1,12 +1,12 @@
-@extends('layouts.admin')
-@section('title','Admin - Tambah Kuliner')
+@extends('layouts.resto')
+@section('title','resto - Tempat Kuliner')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Makanan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Tempat Kuliner {{$item->title}}</h1>
 
         </div>
 
@@ -23,11 +23,12 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{route('food.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('food.update', $item->id)}}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Makanan</label>
-                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{old('name')}}">
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{$item->name}}">
                     </div>
                     <div class="form-group">
                         <label for="image">Gambar</label>
@@ -35,19 +36,9 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Harga</label>
-                        <input type="text" name="price" placeholder="Harga" class="form-control">
+                        <input type="number" name="price" placeholder="Harga" class="form-control" value="{{$item->price}}">
                     </div>
-                    <div class="form-group">
-                        <label for="place_id">Nama Tempat Makan</label>
-                        <select name="place_id" required class="form-control">
-                            <<option value="">Pilih Tempat Kuliner</option>
-                            @foreach ($kuliner_places as $place)
-                            <option value="{{$place->id}}">
-                                {{$place->name}}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <button type="submit" class="btn btn-primary btn-block">Simpan</button>
                 </form>
             </div>

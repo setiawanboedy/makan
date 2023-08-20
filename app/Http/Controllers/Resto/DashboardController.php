@@ -4,48 +4,51 @@ namespace App\Http\Controllers\Resto;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Transaction;
+use App\Models\Food;
+use App\Models\KulinerPlace;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
 
-        $restoId = Auth::user()->id;
+        $resto = Auth::user();
+        $kuliner_place = KulinerPlace::where('resto_id',$resto->id)->get()->first();
+        $items = Food::where('place_id', $kuliner_place->id)->count();
 
-        $transactions = Transaction::whereHas('detailHeaders', function ($query) use ($restoId) {
-            $query->where('resto_id', $restoId);
-        })->get();
-
-
-        $trans_count = $transactions->count();
-        $trans_success_count = $transactions->where('transaction_status','SUCCESS')->count();
-        $trans_pending_count = $transactions->where('transaction_status','PENDING')->count();
         return view('pages.resto.dashboard',[
-            'trans_count'=>$trans_count,
-            'trans_success_count'=>$trans_success_count,
-            'trans_pending_count'=>$trans_pending_count,
-            'items'=>$transactions
+            'items'=>$items,
+            'owner'=>$resto,
+            'kuliner_place'=>$kuliner_place
         ]);
     }
 
-    public function pdf(Request $request)
-    {
-        $restoId = Auth::user()->id;
+    // public function pdf(Request $request)
+    // {
+    //     $restoId = Auth::user()->id;
 
-        $transactions = Transaction::whereHas('detailHeaders', function ($query) use ($restoId) {
-            $query->where('resto_id', $restoId);
-        })->get();
+    //     $transactions = Transaction::whereHas('detailHeaders', function ($query) use ($restoId) {
+    //         $query->where('resto_id', $restoId);
+    //     })->get();
 
-        $pdf = PDF::loadview('pages.resto.pdf',['items'=>$transactions]);
-        return $pdf->download('laporan-transaksi.pdf');
+    //     $pdf = PDF::loadview('pages.resto.pdf',['items'=>$transactions]);
+    //     return $pdf->download('laporan-transaksi.pdf');
+    // }
+
+    public function edit($id){
+        $kuliner_place = KulinerPlace::findOrFail($id);
+        // dd($id);
+        return view('pages.resto.edit',[
+            'item'=>$kuliner_place
+        ]);
     }
-	
+
 	public function update(Request $request){
 
-        $item = Transaction::findOrFail($request->transId);
-		$item->transaction_status = $request->status;
+        $item = KulinerPlace::findOrFail($request->resto_id);
+		$item->name = $request->name;
+        $item->status = $request->status;
         $item->save();
 
         return redirect()->route('dashboard-resto');

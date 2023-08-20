@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OpenRestoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,11 @@ Route::namespace('App\Http\Controllers')
         Route::get('/profile', 'index')->name('profile');
     });
 
+Route::middleware(['auth','web'])
+    ->group(function(){
+        Route::resource('open', OpenRestoController::class);
+    });
+
 Route::namespace('App\Http\Controllers')
     ->middleware(['auth','web'])
     ->controller(KulinerFoodController::class)
@@ -75,7 +81,7 @@ Route::prefix('admin')
         Route::resource('kuliner-place', KulinerPlaceController::class);
         Route::resource('booking-number', BookingNumberController::class);
         Route::resource('transaction', TransactionController::class);
-        Route::resource('food', FoodController::class);
+
         Route::get('managemen', 'ManageController@index')->name('manage.index');
         Route::post('managemen', 'ManageController@role')->name('manage.update');
     });
@@ -86,7 +92,9 @@ Route::prefix('resto')
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard-resto');
         Route::post('/', 'DashboardController@pdf')->name('pdf-trans');
-		Route::post('/update', 'DashboardController@update')->name('resto.update');
+		Route::get('/edit/{id}', 'DashboardController@edit')->name('resto.edit');
+        Route::put('/update', 'DashboardController@update')->name('resto.update');
+        Route::resource('food', FoodController::class);
 
     });
 
