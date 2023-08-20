@@ -9,15 +9,15 @@
                     <li class="{{ request()->is('admin/kuliner-place') ? 'active' : '' }}">
                         <a href="{{route('kuliner-place.index')}}"><i class="menu-icon fa fa-home"></i>Restoran </a>
                     </li>
-                    <li class="{{ request()->is('admin/booking-number') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->is('admin/booking-number') ? 'active' : '' }}">
                         <a href="{{route('booking-number.index')}}"><i class="menu-icon fa fa-sort-numeric-asc"></i>Nomer Booking </a>
-                    </li>
-                    <li class="{{ request()->is('admin/food') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ request()->is('admin/food') ? 'active' : '' }}">
                         <a href="{{route('food.index')}}"><i class="menu-icon fa fa-cutlery" aria-hidden="true"></i>Makanan </a>
-                    </li>
-                    <li class="{{ request()->is('admin/transaction') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ request()->is('admin/transaction') ? 'active' : '' }}">
                         <a href="{{route('transaction.index')}}"><i class="menu-icon fa fa-money"></i>Transaksi </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->is('admin/managemen') ? 'active' : '' }}">
                         <a href="{{route('manage.index')}}"><i class="menu-icon fa fa-file-archive-o"></i>Managemen User </a>
                     </li>

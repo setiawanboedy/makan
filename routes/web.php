@@ -86,6 +86,7 @@ Route::prefix('resto')
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard-resto');
         Route::post('/', 'DashboardController@pdf')->name('pdf-trans');
+		Route::post('/update', 'DashboardController@update')->name('resto.update');
 
     });
 

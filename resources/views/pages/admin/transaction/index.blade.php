@@ -44,9 +44,9 @@
                                     <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
+                                    {{--<a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil"></i>
-                                    </a>
+                                    </a> --}}
                                     <form action="{{route('transaction.destroy', $item->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')

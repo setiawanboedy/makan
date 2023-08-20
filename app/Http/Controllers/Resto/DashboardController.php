@@ -41,4 +41,13 @@ class DashboardController extends Controller
         $pdf = PDF::loadview('pages.resto.pdf',['items'=>$transactions]);
         return $pdf->download('laporan-transaksi.pdf');
     }
+	
+	public function update(Request $request){
+
+        $item = Transaction::findOrFail($request->transId);
+		$item->transaction_status = $request->status;
+        $item->save();
+
+        return redirect()->route('dashboard-resto');
+	}
 }

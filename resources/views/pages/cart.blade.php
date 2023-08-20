@@ -1,7 +1,7 @@
 @extends('layouts.detail')
 
 @section('title')
-    Keranjang - Kekalik Mebel
+    Keranjang - Makan
 @endsection
 
 @section('content')

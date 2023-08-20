@@ -92,10 +92,14 @@
                                     <th>Quantity</th>
                                     <th>Total</th>
                                     <th>Status</th>
+									<th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($items as $item)
+								
+								<form action="{{ route('resto.update') }}" method="post" class="d-inline">
+								@csrf
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->user->name }}</td>
@@ -105,9 +109,27 @@
                                             return $detailHeader->trans_details->pluck('quantity');
                                         })->sum() }}</td>
                                         <td>Rp {{ $item->transaction_total }}</td>
-                                        <td>{{ $item->transaction_status }}</td>
+										
+										<td>
+                                        <select name="status" required class="form-control">
+                                            <option value="">{{ $item->transaction_status }}</option>
+                                            <option value="PENDING">Pending</option>
+											<option value="SUCCESS">Success</option>
+											<option value="CANCEL">Cancel</option>
+                                        </select>
+										</td>
+										<td>
+										
+                                        <input type="hidden" name="transId" value="{{$item->id}}">
+                                        <button class="btn btn-info">
+                                            Update
+                                        </button>
+										
+										</td>
+                                        
 
                                     </tr>
+									</form>
                                 @empty
                                     <tr>
                                         <td colspan="7" class="text-center">

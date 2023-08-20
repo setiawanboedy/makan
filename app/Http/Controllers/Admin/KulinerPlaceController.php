@@ -18,7 +18,7 @@ class KulinerPlaceController extends Controller
      */
     public function index()
     {
-        $items = KulinerPlace::get();
+        $items = KulinerPlace::all();
         return view('pages.admin.kuliner.index', [
             'items'=>$items
         ]);

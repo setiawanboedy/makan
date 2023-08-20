@@ -8,9 +8,10 @@
                 src="{{ url('frontend/img/create-account-office.jpeg') }}" alt="Office" />
 
         </div>
+
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-                <form action="{{route('register')}}" method="post">
+                <form action="{{route('register')}}" method="POST">
                     @csrf
                     <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                         Buat Akun
@@ -44,7 +45,7 @@ is-invalid
                     <label class="block mt-4 text-sm" for="password">
                         <span class="text-gray-700 dark:text-gray-400">Password</span>
                         <input type="password" name="password" value="{{old('password')}}" required autocomplete="new-password"
-                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input @error('password')is-invalid @enderror"
                             placeholder="***************"  />
                             @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -61,17 +62,6 @@ is-invalid
                             placeholder="***************" />
                     </label>
 
-                    <div class="flex mt-6 text-sm">
-                        <label class="flex items-center dark:text-gray-400">
-                            <input type="checkbox"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
-                            <span class="ml-2">
-                                I agree to the
-                                <span class="underline">privacy policy</span>
-                            </span>
-                        </label>
-                    </div>
-
                     <!-- You should use a button here, as the anchor is only used for the example  -->
                     <button
                     style="background-color: #0e9f6e"
@@ -84,7 +74,7 @@ is-invalid
                 <hr class="my-8" />
 
                 <p class="mt-4">
-                    <a class="text-sm font-medium text-green-500 dark:text-purple-400 hover:underline" href="./login.html">
+                    <a class="text-sm font-medium text-green-500 dark:text-purple-400 hover:underline" href="{{route('login')}}">
                         Sudah punya akun? Masuk
                     </a>
                 </p>

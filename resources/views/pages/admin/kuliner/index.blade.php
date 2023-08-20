@@ -8,9 +8,9 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tempat Kuliner</h1>
-            <a href="{{ route('kuliner-place.create') }}" class="btn btn-sm btn-primary shadow-sm">
+            {{-- <a href="{{ route('kuliner-place.create') }}" class="btn btn-sm btn-primary shadow-sm">
                 <i class="text-white-50"></i> Tambah Paket Travel
-            </a>
+            </a> --}}
         </div>
 
         <div class="card shadow">
@@ -41,9 +41,6 @@
                                 <td>{{ $item->table }}</td>
                                 <td>{{ $item->room }}</td>
                                 <td>
-                                    <a href="{{ route('kuliner-place.edit', $item->id) }}" class="btn btn-info">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
 
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#exampleModalCenter">
