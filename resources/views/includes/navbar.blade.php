@@ -25,9 +25,12 @@
             </ul>
 
             @auth
+            @if ($roles != "ADMIN")
             <div class="ps-md-3">
                 <a href="{{ route('open.create') }}" class="btn btn-primary px-3 nav-item">Buka Resto</a>
             </div>
+            @endif
+
             @endauth
 
             {{-- @guest

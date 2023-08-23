@@ -30,10 +30,22 @@
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" name="name" placeholder="Name" value="{{$item->name}}">
                     </div>
+                    <div class="form-group">
+                        <label for="name">No. Hp</label>
+                        <input type="number" class="form-control" name="hp" placeholder="No. Hp" value="{{$item->hp}}">
+                    </div>
                     <input type="hidden" name="resto_id" value="{{$item->id}}">
                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" name="status" placeholder="Status" class="form-control" value="{{$item->status}}">
+                        <select name="status" required class="form-control">
+                            <option value="">{{ $item->status }}</option>
+                            <option value="Buka">
+                                Buka
+                            </option>
+                            <option value="Tutup">
+                                Tutup
+                            </option>
+
+                        </select>
                     </div>
 
 

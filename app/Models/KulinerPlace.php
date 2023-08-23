@@ -11,6 +11,7 @@ class KulinerPlace extends Model
     protected $fillable = [
         'resto_id',
         'name',
+        'hp',
         'status',
         'image',
         'avgprice',

@@ -195,13 +195,19 @@
 
                         @forelse ($items->take(6) as $item)
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <a href="{{ route('kuliner-detail', $item->id) }}">
+                                <a href="{{ route('food-kuliner.index', $item->id) }}">
                                     <div class="property-item rounded overflow-hidden">
                                         <div class="img-item position-relative overflow-hidden">
                                             <img class="img-fluid" src="{{ Storage::url($item->image) }}" alt="">
+                                            @if ($item->status == "Buka")
                                             <div
-                                                class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                                {{ $item->status }}</div>
+                                            class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                            {{ $item->status }}</div>
+                                            @else
+                                            <div
+                                            class="bg-dark rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                            {{ $item->status }}</div>
+                                            @endif
                                             <div
                                                 class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                                 <span class="fa fa-star" style="color: orange;"></span> 4.5

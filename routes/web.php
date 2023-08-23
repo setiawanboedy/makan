@@ -23,7 +23,7 @@ Route::namespace('App\Http\Controllers')
     Route::get('/kuliner/detail/{id}', 'KulinerDetailController@index')->name('kuliner-detail');
     Route::get('/kuliner', 'KulinerController@index')->name('kuliner');
     Route::get('/kuliner/near/{originLatlng}', 'KulinerNearController@index')->name('kuliner-near.index');
-    Route::get('/kuliner/food', 'KulinerFoodController@index')->name('food-kuliner.index');
+    Route::get('/kuliner/food/{id}', 'KulinerFoodController@index')->name('food-kuliner.index');
 
 });
 
@@ -51,6 +51,8 @@ Route::namespace('App\Http\Controllers')
     ->controller(KulinerFoodController::class)
     ->group(function(){
         Route::post('/kuliner/food', 'addToCart')->name('food.add');
+        Route::get('/kuliner/food/link/{id}', 'externalLink')->name('external-link');
+
     });
 
 Route::namespace('App\Http\Controllers')

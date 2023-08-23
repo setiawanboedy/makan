@@ -22,22 +22,57 @@
         <div class="row g-0 gx-5 flex-column-reverse flex-md-row">
             <div class="col-md-6">
                 <div class="btn bg-warning rounded-pill text-white px-lg-3 py-1">
-                    <span class="fa fa-book px-lg-1"></span> {{ $number->paket }}
+                    <span class="fa fa-book px-lg-1"></span> Super
+                    Partner
                 </div>
 
                 <ul class="nav nav-pills d-inline-flex justify-content-start mt-3">
-
                     <li class="nav-item me-2">
-                        <div class="nav-item">
-                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jam buka</a> --}}
-
+                        <div class="btn bg-primary rounded-pill text-white px-3 py-1">
+                            <span class="fa fa-dot-circle pe-1"></span>{{ $item->status }}
                         </div>
                     </li>
-
+                    <li class="nav-item me-2">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jam buka</a>
+                            <div class="dropdown-menu rounded-3 m-0">
+                                <p class="dropdown-item">Senin
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Selasa
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Rabu
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Kamis
+                                    10:00-21:30</p>
+                                <p class="dropdown-item">Jumat
+                                    10:00-21:30</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item pt-lg-2">
+                        <p>{{ $item->address }}</p>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills d-inline-flex justify-content-start mb-5 mt-3">
+                    <li class="nav-item me-2">
+                        <div class="row text-center">
+                            <div class="col-7">
+                                <span class="fa fa-star" style="color: orange"></span> 4.5
+                            </div>
+                            <div class="col-lg-8">400 Ratings</div>
+                        </div>
+                    </li>
+                    <li class="nav-item me-2">
+                        <div class="row text-center">
+                            <div class="col-7">Rp</div>
+                            <div class="col-lg-8">{{ $item->avgprice }}</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-5 d-flex justify-content-end">
-                <div class="number-box text-center">Nomor <br> {{ $number->nomer }}</div>
+                <img class="img-fluid rounded-3 img-thumbnail img-detail" src="{{ Storage::url($item->image) }}"
+                    alt="Image" width="430" />
             </div>
         </div>
 
@@ -64,22 +99,27 @@
                                         <p class="card-text h6 py-md-2">Rp {{ $product->price }}</p>
                                     </div>
 
-                                    <form action="{{route('food.add')}}" method="post">
-                                        @csrf
+                                    {{-- <form action="{{route('food.add')}}" method="post"> --}}
+                                    {{-- @csrf --}}
 
-                                        <div class="text-center pb-md-3 d-grid px-md-3 add ">
-                                            <input type="hidden" name="food_id" value="{{$product->id}}">
-                                            <input type="hidden" name="place_id" value="{{$item->id}}">
-                                            <input type="hidden" name="nomer" value="{{$number->nomer}}">
-                                            <input type="hidden" name="nomer_id" value="{{$number->id}}">
-                                            <input type="hidden" name="name" value="{{$product->name}}">
+                                    {{-- <div class="text-center pb-md-3 d-grid px-md-3 add "> --}}
+                                    {{-- <input type="hidden" name="food_id" value="{{$product->id}}">
+                                            <input type="hidden" name="place_id" value="{{$item->id}}"> --}}
+                                    {{-- <input type="hidden" name="nomer" value="{{$number->nomer}}"> --}}
+                                    {{-- <input type="hidden" name="nomer_id" value="{{$number->id}}"> --}}
+                                    {{-- <input type="hidden" name="name" value="{{$product->name}}">
                                             <input type="hidden" name="price" value="{{$product->price}}">
                                             <input type="hidden" name="image" value="{{$product->image}}">
                                             <input type="hidden" name="quantity" value="1">
-                                            <button class="btn btn-outline-primary">Tambah</button>
+                                            <button class="btn btn-outline-primary">Buat Pesanan</button> --}}
+                                    {{-- </div>
+                                    </form> --}}
+                                    <form action="{{ route('external-link', $item->id) }}" method="get">
+                                        <input type="hidden" name="name" value="{{ $product->name }}">
+                                        <div class="text-center pb-md-3 d-grid px-md-3 add ">
+                                            <button class="btn btn-outline-primary">Buat Pesanan</button>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
                         @empty

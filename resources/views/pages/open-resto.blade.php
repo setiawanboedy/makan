@@ -40,6 +40,19 @@
 
                                         </div>
                                     </div>
+                                    <div class="row align-items-center pt-4 pb-3 form-group">
+                                        <div class="col-md-3 ps-5">
+
+                                            <h6 class="mb-0">No. HP</h6>
+
+                                        </div>
+                                        <div class="col-md-9 pe-5">
+
+                                            <input type="number" name="hp" class="form-control form-control-lg"
+                                                placeholder="Nomer hp, Contoh: 628192873939" />
+
+                                        </div>
+                                    </div>
 
                                     {{-- <hr class="mx-n3"> --}}
 

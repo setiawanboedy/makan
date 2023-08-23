@@ -17,6 +17,7 @@ class CreateKulinerPackagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('resto_id');
             $table->string('name');
+            $table->bigInteger('hp');
             $table->string('status')->default('Buka');
             $table->text('image');
             $table->string('avgprice');

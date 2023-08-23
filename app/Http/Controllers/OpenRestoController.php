@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\KulinerPlace;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\KulinerRequest;
+use App\Models\User;
 
 class OpenRestoController extends Controller
 {
@@ -51,6 +52,11 @@ class OpenRestoController extends Controller
         );
         $data['resto_id'] = $resto_id;
         KulinerPlace::create($data);
+
+        $user = User::findOrFail($resto_id);
+
+        $user->roles = "RESTO";
+        $user->save();
 
         return redirect()->route('dashboard-resto');
 

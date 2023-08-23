@@ -48,6 +48,7 @@ class DashboardController extends Controller
 
         $item = KulinerPlace::findOrFail($request->resto_id);
 		$item->name = $request->name;
+        $item->hp = $request->hp;
         $item->status = $request->status;
         $item->save();
 

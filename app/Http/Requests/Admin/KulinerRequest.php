@@ -26,6 +26,7 @@ class KulinerRequest extends FormRequest
         return [
             'resto_id'=>'integer',
             'name'=>'required|max:255',
+            'hp'=>'required|integer',
             'status'=>'max:255',
             'image'=>'required|image',
             'address'=>'required|max:255',
