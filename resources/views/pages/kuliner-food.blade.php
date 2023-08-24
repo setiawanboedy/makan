@@ -99,25 +99,19 @@
                                         <p class="card-text h6 py-md-2">Rp {{ $product->price }}</p>
                                     </div>
 
-                                    {{-- <form action="{{route('food.add')}}" method="post"> --}}
-                                    {{-- @csrf --}}
+                                    <form action="{{route('food.add')}}" method="post">
+                                        @csrf
 
-                                    {{-- <div class="text-center pb-md-3 d-grid px-md-3 add "> --}}
-                                    {{-- <input type="hidden" name="food_id" value="{{$product->id}}">
-                                            <input type="hidden" name="place_id" value="{{$item->id}}"> --}}
-                                    {{-- <input type="hidden" name="nomer" value="{{$number->nomer}}"> --}}
-                                    {{-- <input type="hidden" name="nomer_id" value="{{$number->id}}"> --}}
-                                    {{-- <input type="hidden" name="name" value="{{$product->name}}">
+                                        <div class="text-center pb-md-3 d-grid px-md-3 add ">
+                                            <input type="hidden" name="food_id" value="{{$product->id}}">
+                                            <input type="hidden" name="place_id" value="{{$item->id}}">
+                                            {{-- <input type="hidden" name="nomer" value="{{$number->nomer}}"> --}}
+                                            {{-- <input type="hidden" name="nomer_id" value="{{$number->id}}"> --}}
+                                            <input type="hidden" name="name" value="{{$product->name}}">
                                             <input type="hidden" name="price" value="{{$product->price}}">
                                             <input type="hidden" name="image" value="{{$product->image}}">
                                             <input type="hidden" name="quantity" value="1">
-                                            <button class="btn btn-outline-primary">Buat Pesanan</button> --}}
-                                    {{-- </div>
-                                    </form> --}}
-                                    <form action="{{ route('external-link', $item->id) }}" method="get">
-                                        <input type="hidden" name="name" value="{{ $product->name }}">
-                                        <div class="text-center pb-md-3 d-grid px-md-3 add ">
-                                            <button class="btn btn-outline-primary">Buat Pesanan</button>
+                                            <button class="btn btn-outline-primary">Tambah</button>
                                         </div>
                                     </form>
                                 </div>

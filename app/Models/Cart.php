@@ -11,7 +11,6 @@ class Cart extends Model
     protected $fillable = [
         'food_id',
         'user_id',
-        'header_id',
         'name',
         'price',
         'quantity',
@@ -21,8 +20,8 @@ class Cart extends Model
 
     protected $hidden = [];
 
-    public function cart_header()
-    {
-        return $this->belongsTo(CartHeader::class,'header_id', 'id');
-    }
+    // public function cart_header()
+    // {
+    //     return $this->belongsTo(CartHeader::class,'header_id', 'id');
+    // }
 }

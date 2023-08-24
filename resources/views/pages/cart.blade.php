@@ -26,26 +26,7 @@
                                     <hr>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            @forelse ($cartHeaders as $header)
-                                                <div class="">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row">
-                                                            <h5>{{ $header->place->name }}</h5>
-                                                        </div>
-                                                        <div class="d-flex flex-row">
-                                                            <form action="{{ route('cart.removeHeader', $header->id) }}"
-                                                                method="post">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button style="color: #cecece; border: none"><i
-                                                                        class=" fas fa-trash-alt"></i></button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-                                                    <p>Meja Nomor {{ $header->nomer }}</p>
-                                                </div>
-                                                @foreach ($header->carts as $item)
+                                            @foreach ($cartItems as $item)
                                                     <div class="d-flex justify-content-between">
                                                         <div class="d-flex flex-row align-items-center">
                                                             <div>
@@ -64,18 +45,18 @@
                                                                 <div class="d-flex flex-row align-items-center">
                                                                     <input type="hidden" name="food_id"
                                                                         value="{{ $item->food_id }}">
-                                                                    <input type="hidden" name="place_id"
-                                                                        value="{{ $header->place->id }}">
-                                                                    <input type="hidden" name="nomer"
-                                                                        value="{{ $header->nomer }}">
+                                                                    {{-- <input type="hidden" name="place_id"
+                                                                        value="{{ $header->place->id }}"> --}}
+                                                                    {{-- <input type="hidden" name="nomer"
+                                                                        value="{{ $header->nomer }}"> --}}
                                                                     <input type="hidden" name="name"
                                                                         value="{{ $item->name }}">
                                                                     <input type="hidden" name="price"
                                                                         value="{{ $item->price }}">
                                                                     <input type="hidden" name="image"
                                                                         value="{{ $item->image }}">
-                                                                    <input type="hidden" name="header_id"
-                                                                        value="{{ $header->id }}">
+                                                                    {{-- <input type="hidden" name="header_id"
+                                                                        value="{{ $header->id }}"> --}}
 
                                                                     <button class="btn btn-link px-2"
                                                                         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
@@ -107,9 +88,6 @@
                                                     </div>
                                                     <hr>
                                                 @endforeach
-                                            @empty
-                                                <h6 class="text-center p-4">Keranjang kosong</h6>
-                                            @endforelse
 
                                         </div>
                                     </div>

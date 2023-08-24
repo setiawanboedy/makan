@@ -25,33 +25,21 @@ class KulinerFoodController extends Controller
     public function addToCart(Request $request)
     {
         $data = $request->all();
+        $idItem = Cart::where('food_id',$request->product_id)->first();
         $userId = Auth::user()->id;
+        if ($idItem) {
+            $cart = Cart::where('food_id',$request->product_id)->first();
 
-        $cart_header_nomer = CartHeader::where('nomer_id', $request->nomer_id)->first();
-        $cart_header_place = CartHeader::where('place_id', $request->place_id)->first();
+            $data['quantity'] = $cart->quantity + $request->quantity;
+            $data['total'] = $cart->total * $request->quantity;
+            $data['user_id'] = $userId;
+            $cart->update($data);
+        }else{
 
-
-        if ($cart_header_nomer && $cart_header_place) {
-
-                $data['total'] = $request->price * $request->quantity;
-                $data['user_id'] = $userId;
-                $data['header_id'] = $cart_header_nomer->id;
-                Cart::create($data);
-
-        } else {
-            $cartHeader = CartHeader::create([
-                'user_id'=> $userId,
-                'place_id'=> $request->place_id,
-                'nomer_id'=> $request->nomer_id,
-                'nomer'=>$request->nomer,
-            ]);
             $data['total'] = $request->price * $request->quantity;
             $data['user_id'] = $userId;
-            $data['header_id'] = $cartHeader->id;
             Cart::create($data);
         }
-
-
 
         return redirect()->route('cart.list');
     }

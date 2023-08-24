@@ -16,9 +16,6 @@ class CartController extends Controller
     public function cartList()
     {
         $userId = Auth::user()->id;
-        $cartHeaders = CartHeader::with(['carts'])->where('user_id', $userId)->get();
-
-
         $cartItems = Cart::where('user_id',$userId)->get();
 
         $foods = collect($cartItems);
@@ -27,7 +24,7 @@ class CartController extends Controller
         $pajak = ($subtotal*10)/100;
         $total = $subtotal+$pajak;
         return view('pages.cart', [
-            'cartHeaders'=>$cartHeaders,
+            'cartItems'=>$cartItems,
             'total'=> $total,
             'pajak'=>$pajak
         ]);
