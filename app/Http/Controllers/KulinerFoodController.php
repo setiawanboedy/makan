@@ -35,7 +35,6 @@ class KulinerFoodController extends Controller
             $data['user_id'] = $userId;
             $cart->update($data);
         }else{
-
             $data['total'] = $request->price * $request->quantity;
             $data['user_id'] = $userId;
             Cart::create($data);
