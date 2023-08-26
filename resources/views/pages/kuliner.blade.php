@@ -34,9 +34,16 @@
                                     class="bg-dark rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                     {{ $item->status }}</div>
                                     @endif
+                                    @php
+                                        $testimonis = $item->testimonis->where('place_id', $item->id);
+
+                                        $total = count($testimonis);
+                                        $sum = $testimonis->sum('rating');
+                                        $rating = $total > 0 ? $sum / $total : 0;
+                                    @endphp
                                     <div
                                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        <span class="fa fa-star" style="color: orange;"></span> 4.5
+                                        <span class="fa fa-star" style="color: orange;"></span> {{$rating}}
                                     </div>
                                 </div>
                                 <div class="p-4 pb-0">
