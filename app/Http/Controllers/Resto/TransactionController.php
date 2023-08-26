@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
+use App\Models\KulinerPlace;
 
 class TransactionController extends Controller
 {
@@ -16,11 +18,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $resto_id = Auth::user()->id;
-        $items = Transaction::with(['user'])->get();
+        $userId = Auth::user()->id;
+        $restoId = KulinerPlace::where('resto_id', $userId)->first()->id;
+        // $items = Transaction::with(['user'])->get();
+        // $transactions = Transaction::whereHas('trans_details', function ($query) use ($restoId) {
+        //     $query->where('resto_id', $restoId);
+        // })->get();
+
+        // dd($transactions);
+        $transactions = TransactionDetail::where('resto_id', $restoId)->get();
 
         return view('pages.resto.transaction.index',[
-            'items'=>$items
+            // 'items'=>$items
+            'transactions'=>$transactions
         ]);
     }
 
@@ -71,7 +81,7 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        $item = Transaction::findOrFail($id);
+        $item = TransactionDetail::findOrFail($id);
 
         return view('pages.resto.transaction.edit',[
             'item'=>$item
@@ -89,7 +99,7 @@ class TransactionController extends Controller
     {
         $data = $request->all();
 
-        $item = Transaction::findOrFail($id);
+        $item = TransactionDetail::findOrFail($id);
 
         $item->update($data);
 

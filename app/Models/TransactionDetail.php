@@ -17,10 +17,15 @@ class TransactionDetail extends Model
         'nomer',
         'price',
         'quantity',
-        'total'
+        'total',
+        'transaction_status'
     ];
 
     protected $hidden = [
 
     ];
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class,'transaction_id', 'id');
+    }
 }

@@ -4,9 +4,9 @@
     <div style="min-height: 9em"></div>
     <div class="col text-center">
         <h4>Selangkah lagi nih!</h4>
-        <h5>Barang ini akan menjadi milik Anda</h5>
+        <h5>Makanan ini akan menjadi milik Anda</h5>
 
-        <h5 class="py-lg-4">Silahkan melakukan pembayaran ke rekening <br> <strong>BCA 0881 8829 8800 PT Kekalik Jaya</strong></h5>
+        <h5 class="py-lg-4">Silahkan melakukan pembayaran ke rekening <br> <strong>BCA 0881 8829 8800 CV Good Food</strong></h5>
 
         <form action="{{route('payment.store')}}" method="post" enctype="multipart/form-data">
             @csrf

@@ -13,7 +13,70 @@
         <div class="card shadow">
             <div class="card card-body">
                 <table class="table table-bordered">
+
                     <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Gambar</th>
+                            <th>Makanan</th>
+                            <th>Meja</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Bukti</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($transactions as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>
+                                    <img src="{{Storage::url($item->image)}}" width="80" alt="">
+                                </td>
+                                <td>{{$item->name}}</td>
+                                <td>{{ $item->nomer }}</td>
+
+                                <td>{{ $item->price }}</td>
+                                <td>{{ $item->quantity }}</td>
+                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->transaction_status }}</td>
+                                <td>
+                                    @if ($item->transaction->prove != null)
+                                    <img src="/{{$item->transaction->prove}}" alt="" style="width: 80px; height:80px" class="img-thumbnail">
+                                    @else
+                                    Belum
+                                    @endif
+
+                                </td>
+                                <td>
+                                    {{-- <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
+                                        <i class="fa fa-eye"></i>
+                                    </a> --}}
+                                    <a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form action="{{route('transaction.destroy', $item->id)}}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    Data Kosong
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+
+
+                    {{-- <thead>
                         <tr>
                             <th>ID</th>
                             <th>Pemesan</th>
@@ -44,9 +107,9 @@
                                     <a href="{{route('transaction.show', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    {{--<a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
+                                    <a href="{{route('transaction.edit', $item->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil"></i>
-                                    </a> --}}
+                                    </a>
                                     <form action="{{route('transaction.destroy', $item->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
@@ -63,7 +126,8 @@
                                 </td>
                             </tr>
                         @endforelse
-                    </tbody>
+                    </tbody> --}}
+
                 </table>
             </div>
         </div>
