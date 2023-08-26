@@ -78,7 +78,7 @@
 
     </section>
     <!-- Property List Start -->
-    <div class="container-xxl py-5 mt-3">
+    <div class="container-xxl py-5 mt-3" style="bottom: -150vh">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
@@ -99,17 +99,17 @@
                                         <p class="card-text h6 py-md-2">Rp {{ $product->price }}</p>
                                     </div>
 
-                                    <form action="{{route('food.add')}}" method="post">
+                                    <form action="{{ route('food.add') }}" method="post">
                                         @csrf
 
                                         <div class="text-center pb-md-3 d-grid px-md-3 add ">
-                                            <input type="hidden" name="food_id" value="{{$product->id}}">
-                                            <input type="hidden" name="resto_id" value="{{$item->id}}">
-                                            <input type="hidden" name="table" value="{{$item->table}}">
+                                            <input type="hidden" name="food_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="resto_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="table" value="{{ $item->table }}">
                                             {{-- <input type="hidden" name="nomer_id" value="{{$number->id}}"> --}}
-                                            <input type="hidden" name="name" value="{{$product->name}}">
-                                            <input type="hidden" name="price" value="{{$product->price}}">
-                                            <input type="hidden" name="image" value="{{$product->image}}">
+                                            <input type="hidden" name="name" value="{{ $product->name }}">
+                                            <input type="hidden" name="price" value="{{ $product->price }}">
+                                            <input type="hidden" name="image" value="{{ $product->image }}">
                                             <input type="hidden" name="quantity" value="1">
                                             <button class="btn btn-outline-primary">Tambah</button>
                                         </div>
@@ -122,16 +122,100 @@
                             </div>
                         @endforelse
 
+
+
                     </div>
                 </div>
             </div>
+
+
+
+            <!-- Testimonial Start -->
+            <div class="container-xxl py-5 mt-4">
+                <div class="container">
+                    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                        <h1 class="mb-3">Testimoni</h1>
+                        <p>Beberapa testimoni bagi yang sudah menggunakan layanan kami.</p>
+                    </div>
+                    {{-- <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                        @foreach ($testimonis as $testi)
+                        <div class="testimonial-item bg-light rounded p-3">
+                            <div class="bg-white border rounded p-4">
+                                <p>{{$testi->message}}</p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded" src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
+                                        style="width: 45px; height: 45px;">
+                                    <div class="ps-3">
+                                        <h6 class="fw-bold mb-1">{{$testi->user->name}}</h6>
+                                        <small><span class="fa fa-star" style="color: orange"></span> {{$testi->rating}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
+
+
+                    </div> --}}
+
+
+                        @foreach ($testimonis as $testi)
+                        <div class="testimonial-item bg-light rounded p-3" style="width: 50%">
+                            <div class="bg-white border rounded p-4">
+                                <p>{{$testi->message}}</p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded" src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
+                                        style="width: 45px; height: 45px;">
+                                    <div class="ps-3">
+                                        <h6 class="fw-bold mb-1">{{$testi->user->name}}</h6>
+                                        <small><span class="fa fa-star" style="color: orange"></span> {{$testi->rating}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
+
+
+
+                </div>
+            </div>
+            <!-- Wrapper container -->
+            <div class="container py-4" style="width: 50%">
+
+                <!-- Bootstrap 5 starter form -->
+                <form id="contactForm" action="{{route('food.testimoni')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="place_id" value="{{$item->id}}">
+
+                    <!-- Email address input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="emailAddress">Berikan Rating</label>
+                        <select name="rating" class="form-select" aria-label="Default select example">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="message">Pesan</label>
+                        <textarea name="message" class="form-control" id="message" type="text" placeholder="Feedback" style="height: 10rem;"></textarea>
+                    </div>
+
+                    <!-- Form submit button -->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit">Kirim</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- Testimonial End -->
         </div>
     </div>
-    {{-- <!-- Property List End -->
-    <div style="position: sticky; bottom: 0;" class="bg-white pay-book">
-        <nav class="container bg-white navbar-light py-3 px-4 text-center d-grid">
-            <a href="#" class="btn btn-danger py-2 rounded-3" style="color: white;">Lanjutkan Pemesanan</a>
-
-        </nav>
-    </div> --}}
 @endsection

@@ -51,7 +51,7 @@ Route::namespace('App\Http\Controllers')
     ->controller(KulinerFoodController::class)
     ->group(function(){
         Route::post('/kuliner/food', 'addToCart')->name('food.add');
-
+        Route::post('/kuliner/food/testimoni', 'addTestimoni')->name('food.testimoni');
         Route::get('/kuliner/food/link/{id}', 'externalLink')->name('external-link');
 
     });

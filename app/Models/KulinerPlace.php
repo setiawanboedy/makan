@@ -30,4 +30,8 @@ class KulinerPlace extends Model
     public function food(){
         return $this->hasMany(Food::class, 'place_id', 'id');
     }
+
+    public function testimonis(){
+        return $this->hasMany(Testimoni::class, 'place_id', 'id');
+    }
 }
