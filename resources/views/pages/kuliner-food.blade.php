@@ -57,9 +57,9 @@
                     <li class="nav-item me-2">
                         <div class="row text-center">
                             <div class="col-7">
-                                <span class="fa fa-star" style="color: orange"></span> 4.5
+                                <span class="fa fa-star" style="color: orange"></span> {{$rating}}
                             </div>
-                            <div class="col-lg-8">400 Ratings</div>
+                            <div class="col-lg-8">{{count($testimonis)}} Ratings</div>
                         </div>
                     </li>
                     <li class="nav-item me-2">
@@ -131,53 +131,53 @@
 
 
             <!-- Testimonial Start -->
-            <div class="container-xxl py-5 mt-4">
+            <div class="container-xxl py-5 mt-4" @if (count($testimonis) <= 1) style="width: 50%" @endif>
                 <div class="container">
                     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                         <h1 class="mb-3">Testimoni</h1>
                         <p>Beberapa testimoni bagi yang sudah menggunakan layanan kami.</p>
                     </div>
-                    {{-- <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
 
+                    @if (count($testimonis) <= 1)
                         @foreach ($testimonis as $testi)
-                        <div class="testimonial-item bg-light rounded p-3">
-                            <div class="bg-white border rounded p-4">
-                                <p>{{$testi->message}}</p>
-                                <div class="d-flex align-items-center">
-                                    <img class="img-fluid flex-shrink-0 rounded" src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
-                                        style="width: 45px; height: 45px;">
-                                    <div class="ps-3">
-                                        <h6 class="fw-bold mb-1">{{$testi->user->name}}</h6>
-                                        <small><span class="fa fa-star" style="color: orange"></span> {{$testi->rating}}</small>
+                            <div class="testimonial-item bg-light rounded p-3">
+                                <div class="bg-white border rounded p-4">
+                                    <p>{{ $testi->message }}</p>
+                                    <div class="d-flex align-items-center">
+                                        <img class="img-fluid flex-shrink-0 rounded"
+                                            src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
+                                            style="width: 45px; height: 45px;">
+                                        <div class="ps-3">
+                                            <h6 class="fw-bold mb-1">{{ $testi->user->name }}</h6>
+                                            <small><span class="fa fa-star" style="color: orange"></span>
+                                                {{ $testi->rating }}</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
                         @endforeach
+                    @else
+                        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
 
-
-                    </div> --}}
-
-
-                        @foreach ($testimonis as $testi)
-                        <div class="testimonial-item bg-light rounded p-3" style="width: 50%">
-                            <div class="bg-white border rounded p-4">
-                                <p>{{$testi->message}}</p>
-                                <div class="d-flex align-items-center">
-                                    <img class="img-fluid flex-shrink-0 rounded" src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
-                                        style="width: 45px; height: 45px;">
-                                    <div class="ps-3">
-                                        <h6 class="fw-bold mb-1">{{$testi->user->name}}</h6>
-                                        <small><span class="fa fa-star" style="color: orange"></span> {{$testi->rating}}</small>
+                            @foreach ($testimonis as $testi)
+                                <div class="testimonial-item bg-light rounded p-3">
+                                    <div class="bg-white border rounded p-4">
+                                        <p>{{ $testi->message }}</p>
+                                        <div class="d-flex align-items-center">
+                                            <img class="img-fluid flex-shrink-0 rounded"
+                                                src="https://ui-avatars.com/api/?name={{ $testi->user->name }}"
+                                                style="width: 45px; height: 45px;">
+                                            <div class="ps-3">
+                                                <h6 class="fw-bold mb-1">{{ $testi->user->name }}</h6>
+                                                <small><span class="fa fa-star" style="color: orange"></span>
+                                                    {{ $testi->rating }}</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-
-                        @endforeach
-
-
+                    @endif
 
                 </div>
             </div>
@@ -185,9 +185,9 @@
             <div class="container py-4" style="width: 50%">
 
                 <!-- Bootstrap 5 starter form -->
-                <form id="contactForm" action="{{route('food.testimoni')}}" method="POST">
+                <form id="contactForm" action="{{ route('food.testimoni') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="place_id" value="{{$item->id}}">
+                    <input type="hidden" name="place_id" value="{{ $item->id }}">
 
                     <!-- Email address input -->
                     <div class="mb-3">
@@ -198,13 +198,14 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                          </select>
+                        </select>
                     </div>
 
                     <!-- Message input -->
                     <div class="mb-3">
                         <label class="form-label" for="message">Pesan</label>
-                        <textarea name="message" class="form-control" id="message" type="text" placeholder="Feedback" style="height: 10rem;"></textarea>
+                        <textarea name="message" class="form-control" id="message" type="text" placeholder="Feedback"
+                            style="height: 10rem;"></textarea>
                     </div>
 
                     <!-- Form submit button -->

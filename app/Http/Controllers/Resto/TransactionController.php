@@ -53,7 +53,7 @@ class TransactionController extends Controller
     {
         $data = $request->all();
 
-        Transaction::create($data);
+        TransactionDetail::create($data);
 
         return redirect()->route('transaction.index');
     }
@@ -114,7 +114,7 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        $item = Transaction::findOrFail($id);
+        $item = TransactionDetail::findOrFail($id);
         $item -> delete();
         return redirect()->route('transaction.index');
     }

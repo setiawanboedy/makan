@@ -36,9 +36,6 @@
                                                 ADMIN
                                             </option>
                                             <option value="RESTO">
-                                                RESTO
-                                            </option>
-                                            <option value="RESTO">
                                                 USER
                                             </option>
 

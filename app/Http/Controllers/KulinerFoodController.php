@@ -18,8 +18,14 @@ class KulinerFoodController extends Controller
         $item = KulinerPlace::findOrFail($id);
         $testimonis = $item->testimonis->where('place_id', $item->id);
 
+
+        $total = count($testimonis);
+        $sum = $testimonis->sum('rating');
+        $rating = $total > 0 ? $sum / $total : 0;
+
         return view('pages.kuliner-food',[
             'item'=>$item,
+            'rating'=>$rating,
             'testimonis'=>$testimonis
         ]);
     }
