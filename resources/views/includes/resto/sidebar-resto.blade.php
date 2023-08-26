@@ -9,6 +9,9 @@
                     <li class="{{ request()->is('resto/food') ? 'active' : '' }}">
                         <a href="{{route('food.index')}}"><i class="menu-icon fa fa-cutlery" aria-hidden="true"></i>Makanan </a>
                     </li>
+                    <li class="{{ request()->is('resto/transaction') ? 'active' : '' }}">
+                        <a href="{{route('transaction.index')}}"><i class="menu-icon fa fa-money" aria-hidden="true"></i>Transaksi </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

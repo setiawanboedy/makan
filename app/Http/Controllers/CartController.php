@@ -30,6 +30,13 @@ class CartController extends Controller
         ]);
     }
 
+    public function updateNomerTable(Request $request){
+        $cart = Cart::findOrFail($request->cart_id);
+        $cart->nomer = $request->nomer;
+        $cart->save();
+        return redirect()->route('cart.list');
+    }
+
     public function updateCart(Request $request)
     {
         $data = $request->all();
@@ -77,31 +84,22 @@ class CartController extends Controller
             'transaction_status' => 'PENDING'
         ]);
 
-        $cart_headers = CartHeader::where('user_id', $userId)->get();
-        for ($i=0; $i < count($cart_headers); $i++) {
-            $transactionHeaders = TransactionDetailHeader::create([
+        $carts = Cart::where('user_id', $userId)->get();
+        for ($i=0; $i < count($carts); $i++) {
+
+            TransactionDetail::create([
                 'transaction_id'=> $transaction->id,
-                'name_place'=> $cart_headers[$i]->place->name,
-                'resto_id'=>$cart_headers[$i]->place->resto_id,
-                'booking_number'=> $cart_headers[$i]->nomer,
+                'resto_id'=> $carts[$i]->resto_id,
+                'food_id'=> $carts[$i]->food_id,
+                'image'=> $carts[$i]->image,
+                'name'=>$carts[$i]->name,
+                'nomer'=> $carts[$i]->nomer,
+                'price'=>$carts[$i]->price,
+                'quantity'=>$carts[$i]->quantity,
+                'total'=> $carts[$i]->total
             ]);
-
-            $carts = $cart_headers[$i]->carts;
-            for ($j=0; $j < count($carts); $j++) {
-
-                TransactionDetail::create([
-                    'transactionHeader_id'=> $transactionHeaders->id,
-                    'food_id'=> $carts[$j]->food_id,
-                    'image'=> $carts[$j]->image,
-                    'name'=>$carts[$j]->name,
-                    'price'=>$carts[$j]->price,
-                    'quantity'=>$carts[$j]->quantity,
-                    'total'=> $carts[$j]->total
-                ]);
-            }
-
         }
-
+            Cart::truncate();
             return redirect()->route('payment.index', $transaction->id);
 
     }

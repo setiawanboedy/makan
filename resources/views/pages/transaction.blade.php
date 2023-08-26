@@ -13,21 +13,21 @@
                     </div>
 
                     @forelse ($transactions as $item)
+                        @forelse ($item->transDetails as $trans)
                         <div class="card rounded-3 mb-4">
                             <div class="card-body p-4">
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-1">
 
-                                        <div class="number-box-sm text-center">Nomor <br>
-                                            {{ $item->detailHeaders->pluck('booking_number')->implode(', ') }}</div>
+                                        <div class=" text-center">
+                                            <img src="{{Storage::url($trans->image)}}" width="80" alt="">
+                                        </div>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
                                         <p class="lead fw-normal mb-2">
-                                            {{ $item->detailHeaders->pluck('name_place')->unique()->implode(', ') }}</p>
+                                            {{ $trans->name }}</p>
                                         <p>Makanan x
-                                            {{ $item->detailHeaders->flatMap(function ($detailHeader) {
-                                                    return $detailHeader->trans_details->pluck('quantity');
-                                                })->sum() }}
+                                            {{ $trans->quantity }}
                                         </p>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-2">
@@ -46,7 +46,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <h5 class="mb-0">Rp {{ $item->transaction_total }}</h5>
+                                        <h5 class="mb-0">Rp {{ $trans->total }}</h5>
                                     </div>
                                     <div class="col-md-2 col-lg-2 col-xl-2 text-end">
                                         @if ($item->prove == null)
@@ -60,6 +60,10 @@
                                 </div>
                             </div>
                         </div>
+                        @empty
+
+                        @endforelse
+
                     @empty
                     @endforelse
 

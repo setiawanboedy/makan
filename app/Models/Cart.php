@@ -9,12 +9,15 @@ class Cart extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'resto_id',
         'food_id',
         'user_id',
         'name',
         'price',
         'quantity',
         'image',
+        'table',
+        'nomer',
         'total'
        ];
 

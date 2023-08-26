@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('title','Admin - Transaksi')
+@extends('layouts.resto')
+@section('title','Resto - Transaksi')
 @section('content')
     <!-- Begin Page Content -->
     <div class="content">

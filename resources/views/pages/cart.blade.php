@@ -92,22 +92,29 @@
 
                                                     <div class="col-8 col-md-6 text-end">
                                                         {{-- <label for="meja">Nomer Meja</label> --}}
-                                                        <div class="row g-3">
-                                                            <div class="col-6 ">
-                                                                <div>Nomor Meja</div>
+                                                        <form action="{{route('cart.updateTable')}}" method="post">
+                                                            @csrf
+                                                            <div class="row g-3">
+                                                                <div class="col-6 ">
+                                                                    <div>Nomor Meja</div>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <select name="nomer" class="form-select"
+                                                                        aria-label="Default select example">
+                                                                        <option value="{{$item->nomer}}">{{$item->nomer}}</option>
+                                                                        @for ($i = 1; $i <= $item->table; $i++)
+                                                                            <option value="{{ $i }}">
+                                                                                {{ $i }}</option>
+                                                                        @endfor
+
+                                                                    </select>
+                                                                </div>
+                                                                <input type="hidden" name="cart_id" value="{{$item->id}}">
+                                                                <div class="col-3">
+                                                                    <button class="btn btn-info text-white">Update</button>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-3">
-                                                                <select class="form-select"
-                                                                    aria-label="Default select example">
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <button class="btn btn-info text-white">Update</button>
-                                                            </div>
-                                                        </div>
+                                                        </form>
 
                                                     </div>
                                                 </div>

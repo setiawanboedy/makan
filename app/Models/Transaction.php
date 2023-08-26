@@ -24,8 +24,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class,'users_id', 'id');
     }
-    public function detailHeaders(){
-        return $this->hasMany( TransactionDetailHeader::class, 'transaction_id', 'id' );
+    public function transDetails(){
+        return $this->hasMany( TransactionDetail::class, 'transaction_id', 'id' );
     }
 
 }

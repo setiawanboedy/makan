@@ -51,6 +51,7 @@ Route::namespace('App\Http\Controllers')
     ->controller(KulinerFoodController::class)
     ->group(function(){
         Route::post('/kuliner/food', 'addToCart')->name('food.add');
+
         Route::get('/kuliner/food/link/{id}', 'externalLink')->name('external-link');
 
     });
@@ -65,6 +66,7 @@ Route::namespace('App\Http\Controllers')
     Route::delete('remove/{id}','removeCart')->name('cart.remove');
     Route::delete('removeHeader/{id}','removeCartHeader')->name('cart.removeHeader');
     Route::post('checkout', 'checkout')->name('cart.checkout');
+    Route::post('cart/update', 'updateNomerTable')->name('cart.updateTable');
 });
 
 Route::namespace('App\Http\Controllers')
@@ -82,7 +84,7 @@ Route::prefix('admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::resource('kuliner-place', KulinerPlaceController::class);
         Route::resource('booking-number', BookingNumberController::class);
-        Route::resource('transaction', TransactionController::class);
+
 
         Route::get('managemen', 'ManageController@index')->name('manage.index');
         Route::post('managemen', 'ManageController@role')->name('manage.update');
@@ -96,6 +98,7 @@ Route::prefix('resto')
         Route::post('/', 'DashboardController@pdf')->name('pdf-trans');
 		Route::get('/edit/{id}', 'DashboardController@edit')->name('resto.edit');
         Route::put('/update', 'DashboardController@update')->name('resto.update');
+        Route::resource('transaction', TransactionController::class);
         Route::resource('food', FoodController::class);
 
     });

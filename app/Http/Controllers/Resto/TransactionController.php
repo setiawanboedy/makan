@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Resto;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 
@@ -15,9 +16,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $resto_id = Auth::user()->id;
         $items = Transaction::with(['user'])->get();
 
-        return view('pages.admin.transaction.index',[
+        return view('pages.resto.transaction.index',[
             'items'=>$items
         ]);
     }
@@ -56,7 +58,7 @@ class TransactionController extends Controller
     {
         $item = Transaction::findOrFail($id);
 
-        return view('pages.admin.transaction.detail',[
+        return view('pages.resto.transaction.detail',[
             'item' => $item
         ]);
     }
@@ -71,7 +73,7 @@ class TransactionController extends Controller
     {
         $item = Transaction::findOrFail($id);
 
-        return view('pages.admin.transaction.edit',[
+        return view('pages.resto.transaction.edit',[
             'item'=>$item
         ]);
     }
